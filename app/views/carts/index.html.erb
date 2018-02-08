@@ -1,0 +1,43 @@
+<section class="section-show">
+	<div class="container">
+		<% if @carts.where(user_id:current_user.id).presence == nil %>
+			<p>カートには何も入っていません</p>
+		<% end %>
+		<% @carts.each do |cart| %>
+			<% if current_user.id == cart.user_id %>
+				<div class="row cart-border">
+					<div class="col-lg-3"><%= attachment_image_tag cart.item, :image, :fill, 200, 200 %><br><br><span><%= link_to "カートから削除",cart_path(cart),method: :delete %></span></div>
+					<div class="col-lg-3">
+						<div class="cart-title"><%= cart.item.name %></div><br>
+						<div class="cart-price"><%= number_to_currency(cart.item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span></div><br>
+						<div>
+							＜生産者名＞
+							<%= link_to introduction_path do %>
+								<%= cart.item.person.name %>
+							<% end %>
+						</div><br>
+						<div>残り<%= cart.item.stock %>個</div><br>
+						<%= form_for cart do |f| %>
+							<div><%= f.number_field :count,min:1,max:cart.item.stock %>個<span>　　<%= f.submit "個数変更" %></span>
+							</div>
+						<% end %>
+					</div>
+					<div class="col-lg-3 cart-top-margin cart-price">小計　<%= number_to_currency(cart.item.price*cart.count, :unit => "￥", :precision => 0) %>　(税込)
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+		<div class="cart-price cart-left-margin">合計金額　<%= number_to_currency(@total_price, :unit => "￥", :precision => 0) %>　(税込)
+		</div>
+		<div>配送先情報</div>
+		<%= form_for @delivery do |f| %>
+		名前
+		<%= f.text_field :name, value: "#{current_user.name}" %>
+		住所
+		<%= f.text_field :address, value: "#{current_user.address}" %>
+		電話番号
+		<%= f.text_field :phone, value: "#{current_user.phone}" %>
+		<%= f.submit "購入", class: "square_btn", "data-confirm" => "本当に購入しますか？" %>
+		<% end %>
+	</div>
+</section>

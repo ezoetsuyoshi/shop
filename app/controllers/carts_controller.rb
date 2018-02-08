@@ -1,0 +1,41 @@
+class CartsController < ApplicationController
+
+	def index
+		@delivery = Delivery.new
+		@carts = Cart.all
+		@total_price = 0
+		@carts.each do |cart|
+	      if current_user.id == cart.user_id
+	         @total_price += cart.item.price*cart.count
+	      end
+    	end
+	end
+
+	def create
+		@cart = Cart.new(cart_params)
+		@cart.user_id = current_user.id
+		@cart.save
+		redirect_to carts_path
+	end
+
+	def update
+		@cart = Cart.find(params[:id])
+		@cart.update(cart_params)
+		redirect_to carts_path
+	end
+
+	def destroy
+		@cart = Cart.find(params[:id])
+		@cart.delete
+		redirect_to carts_path
+	end
+
+
+	private
+
+	def cart_params
+		params.require(:cart).permit(:user_id,:item_id,:count)
+	end
+
+
+end

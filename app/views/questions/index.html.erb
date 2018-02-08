@@ -1,0 +1,22 @@
+<% if flash[:n] %>
+	<div class="flash-message"><%= flash[:n] %></div><br><br>
+<% end %>
+
+<h1 class="text-center">問い合わせ一覧</h1>
+
+<% @questions.each do |q| %>
+<div class="make-question">
+	<p>名前　　　　　:<%= q.name %></p><br>
+
+	<p>メールアドレス:<%= q.mail %></p><br>
+
+	<p>電話番号　　　:<%= q.phone %></p><br>
+
+	<p>問い合わせ内容</p>
+	<div class="question-border"><%= q.content %></div><br><br>
+	<%= link_to "削除", question_path(q.id), method: :delete, "data-confirm" => "本当に削除してよろしいですか？" %>
+
+</div>
+
+<%end%>
+

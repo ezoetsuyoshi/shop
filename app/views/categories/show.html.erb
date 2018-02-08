@@ -1,0 +1,36 @@
+<section class="border"><!--カテゴリで絞った画面-->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="search-box">
+					<p class="items-top">〜１３時までにご注文で本日お届け！！〜</p>
+					<div><%= form_tag(category_path(@category), method: :get) do %><!--検索機能-->
+	  					 <%= text_field_tag :search, "", :placeholder => "例：トマト" %>
+	  					 <%= submit_tag "検索", :name => nil %>
+						 <% end %>
+					</div>
+				</div>
+				<% @items.each do |item| %>
+				<% if @category.id == item.category_id %>
+				<div class="inline">
+					<%= link_to item_path(item.id) do %>
+						<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
+					<% end %>
+					<div><%= item.name %></div>
+					<div class="item-price"><%= number_to_currency(item.price, :unit => "￥", :precision => 0) %></div>
+				</div>
+				<% end %>
+				<% end %>
+			</div>
+
+			<div class="col-lg-3 col-lg-offset-1">
+				<p class="category">カテゴリ別</p>
+				<% @categories.each do |c| %>
+					<%= link_to category_path(c.id) do %>
+						<div>・<%= c.name %></div><br>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

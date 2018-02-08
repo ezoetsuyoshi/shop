@@ -1,0 +1,19 @@
+<h2 class="text-center">＜生産者一覧＞</h2>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>名前</th>
+			<th>住所</th>
+		</tr>
+	</thead>
+	<% @people.each do |p| %>
+	<tbody>
+		<tr>
+			<td><%= p.id %></td>
+			<td><%= link_to person_path(p.id) do %><%= p.name %><% end %></td>
+			<td><%= p.address %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>

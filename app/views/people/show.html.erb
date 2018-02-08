@@ -1,0 +1,31 @@
+<h2 class="text-center">＜生産者詳細画面＞</h2>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<%= attachment_image_tag @person, :image %><br>
+				<div><%= @person.name %></div>
+				<div><%= @person.address %></div>
+				<div><%= @person.phone %></div>
+				<%= link_to "編集", edit_person_path(@person.id) %>
+				<%= link_to "削除", person_path, method: :delete, "data-confirm" => "本当に削除してもよろしいですか？" %>
+			</div>
+			<div class="col-lg-9">
+				<%= @person.introduction %>
+			</div>
+		</div>
+
+<h2 class="text-center">＜<%= @person.name %>さんの掲載商品一覧＞</h2>
+	<div class="row">
+		<% @items.each do |i| %>
+			<% if i.person_id == @person.id %>
+				<div class="inline">
+					<%= link_to item_path(i.id) do %>
+						<div class="box"><%= attachment_image_tag i, :image, :fill, 150, 150 %></div>
+					<% end %>
+					<div><%= i.name %></div>
+					<div class="item-price"><%= number_to_currency(i.price, :unit => "￥", :precision => 0) %></div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

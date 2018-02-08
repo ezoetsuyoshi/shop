@@ -1,0 +1,17 @@
+<section class="border">
+	<div class="container">
+		<% @people.each do |p| %>
+			<div class="row people-top">
+				<div class="col-lg-3">
+					<%= attachment_image_tag p, :image %><br>
+					<div><%= p.name %>さん</div>
+					<div><%= p.address %></div>
+				</div>
+
+				<div class="col-lg-9">
+					<%= p.introduction %><br>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</section>

@@ -1,0 +1,231 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+.big{
+	font-size: 60px;
+}
+.text-center{
+	text-align: center;
+}
+.mypage-background{
+	background-color: #f1ca8570;
+}
+.margin-left{
+	margin-left: 47%;
+}
+.make-question{
+	padding-left: 50px;
+	border: 0.5px solid black;
+	margin-top: 50px;
+}
+.question-border{
+	border-top: 0.1px solid #c7c7c7;
+}
+.error-message{
+	text-align: center;
+	color: red;
+}
+.image-photo{
+	background: url("my-icon.jpg");
+	height: 300px;
+	width: 300px;
+	background-position: center;
+	background-size: cover;
+}
+header{
+	background-color: #d88a0070;
+	height: 50px;
+}
+.admin-header{
+	background-color: black;
+	height: 50px;
+}
+.admin-text{
+	color: white;
+}
+.admin-footer{
+	background-color: black;
+	color:white;
+}
+a:link, a:visited{
+	color: black;
+}
+.logo{
+	font-size: 50px;
+	float: left;
+}
+.head{
+	text-align: center;
+	padding-top: 12px;
+	text-align: center;
+}
+.head2{
+	padding-top: 6px;
+}
+.mainimage{
+	background: url(集合.jpg);
+	background-position: center;
+	background-size: cover;
+	height: 500px;
+}
+.top-box{
+	background-color: #ec2d2d6e;
+	width: 35%;
+	float: right;
+	height: 500px;
+}
+.top-text{
+	margin-top: 30px;
+	color: white;
+	font-size: 18px;
+	line-height: 450%;
+}
+section{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: #f1ca8570;
+}
+.inline{
+	display: inline-block;
+	background-color: white;
+	margin-left: 40px;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+	text-align: center;
+	margin-bottom: 40px;
+	border-radius: 20px;
+}
+.box{
+	border-radius: 20px 20px 0 0 / 20px 20px 0 0;
+	overflow:hidden;
+}
+.show-title{
+	text-align: center;
+	font-size: 30px;
+}
+.cart-title{
+	font-size: 20px;
+}
+.show-price{
+	text-align: center;
+	font-size: 60px;
+	color: red;
+	border-bottom: 0.5px solid gray;
+}
+.cart-price{
+	font-size: 20px;
+	color: red;
+}
+.category{
+	text-align: center;
+	border-bottom: 0.5px solid gray;
+	padding-bottom: 20px;
+}
+.section-show{
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+.show-size{
+	font-size: 20px;
+}
+.show-item-top{
+	margin-top: 10px;
+	height: 200px;
+}
+.item-price{
+	color: red;
+}
+.cart{
+	text-align: center;
+	background-color: #f3aa05;
+	font-size: 60px;
+	margin-top: 30px;
+}
+.search-box{
+	margin-left: 50px;
+	margin-bottom: 30px;
+}
+.items-top{
+	text-align: center;
+}
+.flash-message{
+	text-align: center;
+	font-size: 30px;
+	color: red;
+}
+.people-top{
+	padding-top: 50px;
+}
+.border{
+	border-top: 1px solid black;
+}
+.border-line{
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+.pagination{
+	position: relative;
+    left: 320px;
+}
+footer{
+	height: 50px;
+	background-color: #d88a0070;
+}
+.inline-box{
+	display: inline-block;
+}
+.edit_cart{
+	line-height: normal;
+}
+.inline-box{
+	display:inline-block;
+}
+.cart-border{
+	border-bottom: 0.1px solid gray;
+	padding: 30px 0;
+}
+.cart-top-margin{
+	margin-top: 180px;
+}
+.cart-left-margin{
+	margin-left: 700px;
+	margin-top: 20px;
+}
+.square_btn {
+    position: relative;
+    display: inline-block;
+    padding: 1em 4em;
+    text-decoration: none;
+    color: #FFF;
+    background: #fd9535;/*背景色*/
+    border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    font-weight: bold;
+    cursor:pointer;
+    margin-left: 900px;
+    margin-top: 50px;
+}
+
+.square_btn:active {
+    border-bottom: solid 2px #fd9535;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+@import "bootstrap-sprockets";
+@import "bootstrap";

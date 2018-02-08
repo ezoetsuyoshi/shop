@@ -1,0 +1,49 @@
+<div class="mainimage">
+	<!--<p class="logo">〜全国野菜直売所〜</p>-->
+	<div class="top-box">
+		<p class="top-text">全国各地の美味しい新鮮な野菜を販売しています！！ <br>
+			採れすぎてしまった野菜などもまとめ買いでお得に！！<br>
+			本日採れたての野菜も多数あります！<br>
+			ぜひご覧ください！
+		</p>
+	</div>
+</div>
+
+<section><!--商品一覧-->
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="search-box">
+				<p class="items-top">〜１３時までにご注文で本日お届け！！〜</p>
+				<div><%= form_tag(items_path, method: :get) do %><!--検索機能-->
+  					 <%= text_field_tag :search, "", :placeholder => "例：トマト" %>
+  					 <%= submit_tag "検索", :name => nil %>
+					 <% end %>
+				</div>
+			</div>
+			<% @items.each do |item| %>
+			<div class="inline">
+				<%= link_to item_path(item.id) do %>
+					<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
+				<% end %>
+				<div><%= item.name %></div>
+				<div class="item-price"><%= number_to_currency(item.price, :unit => "￥", :precision => 0) %></div>
+				<div>残り<%= item.stock %>個</div>
+			</div>
+			<% end %>
+			<br><%= paginate @items, class: "pagenate" %>
+		</div>
+
+		<div class="col-lg-3 col-lg-offset-1">
+			<p class="category">カテゴリ別</p>
+			<% @categories.each do |c| %>
+				<%= link_to category_path(c.id) do %>
+					<div>・<%= c.name %></div><br>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+</section>

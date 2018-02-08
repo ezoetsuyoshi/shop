@@ -1,0 +1,36 @@
+<h2 class="text-center">＜生産者情報編集画面＞</h2><br><br>
+
+<% if @person.errors.any? %>
+    <ul>
+      	<% @person.errors.full_messages.each do |message| %>
+        <li class="error-message"><%= message %></li>
+      	<% end %>
+    </ul>
+<% end %>
+
+<%= form_for(@person) do |f| %>
+	<div class="text-center border-line">
+    	<P>名前</P>
+    	<%= f.text_field :name %>
+ 	</div>
+	<div class="border-line">
+		<p class="text-center">写真</p>
+		<div class="margin-left"><%= f.attachment_field :image %></div>
+	</div>
+	<div class="text-center border-line">
+    	<p>住所</p>
+    	<%= f.text_field :address %>
+ 	</div>
+	<div class="text-center border-line">
+    	<p>電話番号</p>
+    	<%= f.text_field :phone %>
+ 	</div>
+ 	<div class="text-center border-line">
+  		<p>紹介文</p>
+		<%= f.text_area :introduction, size: "60x15" %>
+ 	</div>
+ 	<div class="text-center">
+ 		<%= f.submit "変更を保存する" %>
+ 	</div>
+
+<% end %>

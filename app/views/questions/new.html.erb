@@ -1,0 +1,40 @@
+<% if flash[:n] %>
+	<div class="flash-message"><%= flash[:n] %></div>
+<% end %>
+
+<section>
+	<h2 class="text-center">お問い合わせ</h2>
+	<% if @question.errors.any? %>
+    	<ul>
+      		<% @question.errors.full_messages.each do |message| %>
+        	<li class="error-message"><%= message %></li>
+      		<% end %>
+    	</ul>
+	<% end %>
+
+	<%= form_for(@question) do |f| %>
+
+		<div class="text-center">お名前</div>
+		<div class="text-center">
+			<%= f.text_field :name, :size=>"40" %>
+		</div><br>
+
+		<div class="text-center">メールアドレス</div>
+		<div class="text-center">
+			<%= f.text_field :mail, :size=>"40" %>
+		</div><br>
+
+		<div class="text-center">電話番号</div>
+		<div class="text-center">
+			<%= f.text_field :phone, :size=>"40" %>
+		</div><br>
+
+		<div class="text-center">問い合わせ内容</div>
+		<div class="text-center">
+			<%= f.text_area :content, :size=>"60x15" %>
+		</div><br>
+		<div class="text-center">
+			<%= f.submit "送信する" %>
+		</div>
+	<% end %>
+</section>

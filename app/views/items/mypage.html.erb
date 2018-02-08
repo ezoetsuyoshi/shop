@@ -1,0 +1,52 @@
+<section>
+	<h2 class="text-center">＜会員登録情報＞</h2>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>名前</th>
+				<th>住所</th>
+				<th>メールアドレス</th>
+				<th>電話番号</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @user.name %></td>
+				<td><%= @user.address %></td>
+				<td><%= @user.email %></td>
+				<td><%= @user.phone %></td>
+				<td><%= link_to "編集", edit_user_registration_path %></td>
+			</tr>
+		</tbody>
+	</table>
+	<h2 class="text-center">＜購入履歴＞</h2>
+	<% if @records.presence == nil %>
+		<p>購入履歴はありません</p>
+	<% else %>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>購入日</th>
+				<th>商品</th>
+				<th>1個あたりの金額</th>
+				<th>購入数</th>
+				<th>配送先</th>
+			</tr>
+		</thead>
+		<% @records.each do |record| %>
+				<tbody>
+					<tr>
+						<td><%= record.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+						<td><%= record.item.name %></td>
+						<td><%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></td>
+						<td><%= record.count %></td>
+						<td><%= record.delivery.name %></td>
+						<td><%= record.delivery.address %></td>
+					</tr>
+				</tbody>
+		<% end %>
+	</table>
+	<% end %>
+</section>
+
+
