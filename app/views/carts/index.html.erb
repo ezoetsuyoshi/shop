@@ -1,7 +1,12 @@
 <section class="section-show">
+	<% if flash[:n] %>
+	<div class="flash-messeage">
+		<%= flash[:n] %>
+	</div>
+	<% end %>
 	<div class="container">
 		<% if @carts.where(user_id:current_user.id).presence == nil %>
-			<p>カートには何も入っていません</p>
+			<p>現在カートは空です</p>
 		<% end %>
 		<% @carts.each do |cart| %>
 			<% if current_user.id == cart.user_id %>
@@ -27,17 +32,23 @@
 				</div>
 			<% end %>
 		<% end %>
-		<div class="cart-price cart-left-margin">合計金額　<%= number_to_currency(@total_price, :unit => "￥", :precision => 0) %>　(税込)
-		</div>
-		<div>配送先情報</div>
-		<%= form_for @delivery do |f| %>
-		名前
-		<%= f.text_field :name, value: "#{current_user.name}" %>
-		住所
-		<%= f.text_field :address, value: "#{current_user.address}" %>
-		電話番号
-		<%= f.text_field :phone, value: "#{current_user.phone}" %>
-		<%= f.submit "購入", class: "square_btn", "data-confirm" => "本当に購入しますか？" %>
+		<% if @carts.where(user_id:current_user.id).empty? %>
+		<% else %>
+			<div class="cart-price cart-left-margin">合計金額　<%= number_to_currency(@total_price, :unit => "￥", :precision => 0) %>　(税込)
+			</div>
+			<div>配送先情報</div>
+			<%= form_for @delivery do |f| %>
+				<div>名前</div>
+				<%= f.text_field :name, value: "#{current_user.name}" %><br><br>
+				<div>住所</div>
+				<%= f.text_field :address, value: "#{current_user.address}", class: "delivery-text" %><br><br>
+				<div>電話番号</div>
+				<%= f.text_field :phone, value: "#{current_user.phone}" %><br><br>
+				<%= f.submit "購入", class: "square_btn", "data-confirm" => "本当に購入しますか？" %>
+			<% end %>
+			<%= link_to items_path do %>
+			<div class="square_btn2">買い物を続ける</div>
+			<% end %>
 		<% end %>
 	</div>
 </section>

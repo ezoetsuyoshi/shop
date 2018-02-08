@@ -14,11 +14,9 @@
 					</div>
 					<div class="show-item-top">＜商品説明＞<br><br><%= @item.description %></div>
 					<div>残り<%= @item.stock %>個</div>
-						<%= form_for @cart do |f| %>
-							<%= f.number_field :count, min:1, max: @item.stock,value: 1 %>個
-							<%= f.hidden_field :item_id, value: @item.id %>
-							<div><span class="glyphicon glyphicon-shopping-cart big" aria-hidden="true"></span><%= f.submit "カートに入れる", class: "cart" %></div>
-						<% end %>
+					<div class="cart"><span class="glyphicon glyphicon-shopping-cart big" aria-hidden="true"></span>カートに入れる</div>
+						<br><%= link_to "商品情報編集", edit_item_path(@item.id) %>
+						<br><%= link_to "商品削除", item_path(@item.id), method: :delete, "data-confirm" => "商品を削除してよろしいですか?" %>
 				</div>
 		</div>
 	</div>

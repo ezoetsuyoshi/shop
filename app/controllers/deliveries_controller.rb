@@ -12,11 +12,11 @@ class DeliveriesController < ApplicationController
 				@record.count = cart.count
 				@record.delivery_id = @delivery.id
 				@record.save
+				cart.delete
 			else
-				redirect_to carts_path
+				redirect_to carts_path, flash: {n:"在庫不足のため購入できませんでした"}
 			end
 		end
-		@carts.delete_all
 		redirect_to mypage_path
 	end
 

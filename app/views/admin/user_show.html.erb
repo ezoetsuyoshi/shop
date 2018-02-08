@@ -15,7 +15,6 @@
 				<td><%= @user.address %></td>
 				<td><%= @user.email %></td>
 				<td><%= @user.phone %></td>
-				<td><%= link_to "編集", edit_user_registration_path %></td>
 			</tr>
 		</tbody>
 	</table>
@@ -30,26 +29,23 @@
 				<th>商品</th>
 				<th>1個あたりの金額</th>
 				<th>購入数</th>
-				<th>合計金額</th>
 				<th>配送先</th>
-				<th></th>
-				<th>配送状況</th>
 			</tr>
 		</thead>
 		<% @records.each do |record| %>
 				<tbody>
 					<tr>
-						<td><%= record.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
+						<td><%= record.created_at.strftime('%Y/%m/%d %H:%M') %></td>
 						<td><%= record.item.name %></td>
 						<td><%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></td>
 						<td><%= record.count %></td>
-						<td><%= number_to_currency(record.item.price*record.count, :unit => "￥", :precision => 0) %></td>
 						<td><%= record.delivery.name %></td>
 						<td><%= record.delivery.address %></td>
-						<td>発送準備中</td>
 					</tr>
 				</tbody>
 		<% end %>
 	</table>
 	<% end %>
 </section>
+
+
