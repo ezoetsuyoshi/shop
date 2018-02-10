@@ -19,15 +19,23 @@
 	</div>
 	<div class="text-center border-line">
     	<p>住所</p>
-    	<%= f.text_field :address %>
+    	<%= f.text_field :address,size: "60" %>
  	</div>
+  <div class="text-center border-line">
+      <p>生産地(市まで)</p>
+      <%= f.text_field :area %>
+  </div>
 	<div class="text-center border-line">
     	<p>電話番号</p>
     	<%= f.text_field :phone %>
  	</div>
+  <div class="text-center border-line">
+      <p>一言紹介</p>
+    <%= f.text_area :introduction %>
+  </div>
  	<div class="text-center border-line">
   		<p>紹介文</p>
-		<%= f.text_area :introduction, size: "60x15" %>
+		<%= f.text_area :introduction2, size: "60x15" %>
  	</div>
  	<div class="text-center">
  		<%= f.submit "登録" %>

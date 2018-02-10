@@ -23,7 +23,7 @@
 	</div>
 	<div class="text-center border-line">
 		<p>在庫数</p>
-		<%= f.text_field :stock %>個
+		<%= f.select :stock, 1..1000 %>個
 	</div>
 	<div class="border-line">
 		<p class="text-center">商品画像</p>

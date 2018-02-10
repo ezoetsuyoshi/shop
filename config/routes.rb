@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "/mypage_index" => "items#mypage_index" #管理者側のユーザー一覧画面表示用
   get "/item_show/:id" => "admin#item_show", as: "admin_item_show"
   get "/user_show/:id" => "admin#user_show", as: "admin_user_show"
+  get "/user_person/:id" => "people#user_person", as: "user_person"
 
   resources :questions, only: [:index, :new, :create, :destroy]
 end
