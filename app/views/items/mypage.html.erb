@@ -1,9 +1,10 @@
 <section>
-	<h2 class="text-center">＜会員登録情報＞</h2>
+	<h3>＜お客様情報＞<button><%= link_to "編集する", edit_user_registration_path %></button></h3>
 	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>名前</th>
+				<th>カタカナ</th>
 				<th>住所</th>
 				<th>メールアドレス</th>
 				<th>電話番号</th>
@@ -11,15 +12,15 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><%= @user.name %></td>
-				<td><%= @user.address %></td>
+				<td><%= @user.lastname %>　<%= @user.firstname %></td>
+				<td><%= @user.kana_lastname %>　<%= @user.kana_firstname %></td>
+				<td>〒<%= @user.postal_code %>　<%= @user.address %>　<%= @user.address2 %></td>
 				<td><%= @user.email %></td>
 				<td><%= @user.phone %></td>
-				<td><%= link_to "編集", edit_user_registration_path %></td>
 			</tr>
 		</tbody>
 	</table>
-	<h2 class="text-center">＜購入履歴＞</h2>
+	<h3>＜購入履歴＞</h3>
 	<% if @records.presence == nil %>
 		<p>購入履歴はありません</p>
 	<% else %>
@@ -30,7 +31,7 @@
 				<th>商品</th>
 				<th>1個あたりの金額</th>
 				<th>購入数</th>
-				<th>合計金額</th>
+				<th>小計</th>
 				<th>配送先</th>
 				<th></th>
 				<th>配送状況</th>
@@ -39,14 +40,14 @@
 		<% @records.each do |record| %>
 				<tbody>
 					<tr>
-						<td><%= record.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
+						<td><%= record.created_at.strftime('%Y/%m/%d %H:%M') %></td>
 						<td><%= record.item.name %></td>
 						<td><%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></td>
 						<td><%= record.count %></td>
 						<td><%= number_to_currency(record.item.price*record.count, :unit => "￥", :precision => 0) %></td>
-						<td><%= record.delivery.name %></td>
-						<td><%= record.delivery.address %></td>
-						<td>発送準備中</td>
+						<td><%= record.delivery.lastname %>  <%= record.delivery.firstname %></td>
+						<td><%= record.delivery.address %>　<%= record.delivery.address2 %></td>
+						<td><%= record.active_i18n %></td>
 					</tr>
 				</tbody>
 		<% end %>

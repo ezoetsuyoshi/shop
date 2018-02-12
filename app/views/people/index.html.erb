@@ -5,14 +5,17 @@
 			<th>ID</th>
 			<th>名前</th>
 			<th>住所</th>
+			<th>電話番号</th>
 		</tr>
 	</thead>
 	<% @people.each do |p| %>
 	<tbody>
 		<tr>
 			<td><%= p.id %></td>
-			<td><%= link_to person_path(p.id) do %><%= p.name %><% end %></td>
-			<td><%= p.address %></td>
+			<td><%= p.lastname %>  <%= p.firstname %></td>
+			<td><%= p.address %><%= p.address2 %></td>
+			<td><%= p.phone %></td>
+			<td><%= link_to "詳細へ", person_path(p.id) %></td>
 		</tr>
 	</tbody>
 	<% end %>

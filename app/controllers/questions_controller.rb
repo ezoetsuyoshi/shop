@@ -26,6 +26,6 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-  	params.require(:question).permit(:name, :mail, :phone, :content)
+  	params.require(:question).permit(:lastname,:firstname,:kana_lastname,:kana_firstname, :mail, :phone, :content)
   end
 end

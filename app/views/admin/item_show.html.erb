@@ -9,7 +9,7 @@
 					<div>
 						＜生産者名＞
 						<%= link_to introduction_path do %>
-						<%= @item.person.name %>
+						<%= @item.person.lastname %>  <%= @item.person.firstname %>
 						<% end %>
 					</div>
 					<div class="show-item-top">＜商品説明＞<br><br><%= @item.description %></div>

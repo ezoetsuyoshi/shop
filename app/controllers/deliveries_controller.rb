@@ -1,5 +1,9 @@
 class DeliveriesController < ApplicationController
 
+	def new
+		@delivery = Delivery.new
+	end
+
 	def create #購入ボタンを押した際のアクション。配送先・購入商品情報を保存し、カート内全削除し、アイテムのストックを減らす。
 		@carts = Cart.where(user_id: current_user.id)
 		@delivery = Delivery.create(delivery_params)
@@ -17,11 +21,14 @@ class DeliveriesController < ApplicationController
 				redirect_to carts_path, flash: {n:"在庫不足のため購入できませんでした"}
 			end
 		end
-		redirect_to mypage_path
+		redirect_to deliveries_path
+	end
+
+	def index
 	end
 
 	private
 	def delivery_params
-		params.require(:delivery).permit(:name, :address, :phone, records_attributes:[:user_id,:item_id,:price,:count,:delivery_id])
+		params.require(:delivery).permit(:lastname,:firstname,:kana_lastname,:kana_firstname,:address,:address2,:postal_code, :phone, records_attributes:[:user_id,:item_id,:price,:count,:delivery_id,:active])
 	end
 end

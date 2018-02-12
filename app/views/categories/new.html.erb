@@ -1,0 +1,9 @@
+<%= form_for @category do |f| %>
+<div>カテゴリ名</div>
+<%= f.text_field :name %><br>
+<%= f.submit "登録" %>
+<% end %>
+<h3>登録カテゴリ一覧</h3><br><br>
+<% @categories.each do |cate| %>
+<%= cate.name %>　　<%= link_to "名前を変更する", edit_category_path(cate.id) %><br><br>
+<% end %>

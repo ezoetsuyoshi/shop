@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
 
 	def index
-		@delivery = Delivery.new
 		@carts = Cart.all
+		@fee = 540
 		@total_price = 0
 		@carts.each do |cart|
 	      if current_user.id == cart.user_id

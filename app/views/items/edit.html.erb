@@ -11,7 +11,7 @@
 <%= form_for(@item) do |f| %>
 	<div class="text-center border-line">
 		<p>生産者</p>
-		<%= f.collection_select :person_id, Person.all, :id, :name %>
+		<%= f.collection_select :person_id, Person.all, :id, :lastname %>
 	</div>
 	<div class="text-center border-line">
 		<p>カテゴリ</p>

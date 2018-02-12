@@ -13,7 +13,7 @@
         <div class="row">
 
           <%= link_to items_path do %><!--ホームへのリンク-->
-            <div class="head col-lg-2 col-lg-offset-1 admin-text"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム</div>
+            <div class="head col-lg-2 admin-text"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム</div>
           <% end %>
 
 
@@ -25,17 +25,21 @@
             <div class="head col-lg-2 admin-text"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ</div>
           <% end %>
 
-          <div class="dropdown head2 col-lg-2 col-lg-offset-3"><!--管理者メニューボタン-->
+          <%= link_to destroy_admin_session_path, method: :delete do %>
+            <div class="head col-lg-2 admin-text">ログアウト</div>
+          <% end %>
+
+          <div class="dropdown head2 col-lg-2 col-lg-offset-1"><!--管理者メニューボタン-->
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">管理者メニュー <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <%= link_to people_path do %>
-                  <li>生産者一覧</li>
-                <% end %>
                 <%= link_to new_person_path do %>
                   <li>生産者情報登録</li>
                 <% end %>
                 <%= link_to new_item_path do %>
                   <li>商品情報登録</li>
+                <% end %>
+                <%= link_to people_path do %>
+                  <li>生産者一覧</li>
                 <% end %>
                 <%= link_to mypage_index_path do %>
                   <li>会員一覧</li>
@@ -43,8 +47,8 @@
                 <%= link_to questions_path do %>
                   <li>問い合わせ一覧</li>
                 <% end %>
-                <%= link_to destroy_admin_session_path, method: :delete do %>
-                  <li>ログアウト</li>
+                <%= link_to new_category_path do %>
+                  <li>カテゴリ登録</li>
                 <% end %>
               </ul>
           </div>
@@ -57,7 +61,7 @@
         <div class="row">
 
           <%= link_to items_path do %><!--ホームへのリンク-->
-            <div class="head col-lg-2 col-lg-offset-1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム</div>
+            <div class="head col-lg-2"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム</div>
           <% end %>
 
 
@@ -69,32 +73,25 @@
             <div class="head col-lg-2"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ</div>
           <% end %>
 
-          <div class="dropdown head2 col-lg-2 col-lg-offset-3"><!--会員メニューボタン-->
-              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">会員メニュー <span class="caret"></span></button>
-              <ul class="dropdown-menu">
                 <% if user_signed_in? %><!--ユーザーログイン画面へのリンク。ログイン後はユーザーログアウトボタン表示-->
+                    <%= link_to carts_path do %>
+                      <div class="head col-lg-2">カート</div>
+                    <% end %>
                     <%= link_to destroy_user_session_path, method: :delete do %>
-                      <div>ログアウト</div>
+                      <div class="head col-lg-2">ログアウト</div>
                     <% end %>
                     <%= link_to mypage_path do %>
-                      <li>マイページ</li>
-                    <% end %>
-                    <%= link_to carts_path do %>
-                      <li>カート</li>
+                      <div class="head col-lg-2 head-text">ようこそ、<%= current_user.lastname %>様<br>マイページへ</div>
                     <% end %>
                 <% else %>
                     <%= link_to new_user_session_path do %>
-                      <div>ログイン</div>
+                      <div class="head col-lg-2">ログイン</div>
                     <% end %>
-                    <%= link_to new_user_session_path do %>
-                      <li>マイページ</li>
+                    <%= link_to new_user_registration_path do %>
+                      <div class="head col-lg-2">新規会員登録</div>
                     <% end %>
-                    <%= link_to new_user_session_path do %>
-                      <li>カート</li>
-                    <% end %>
+                    <div class="head col-lg-2 head-text">ようこそ、ゲスト様</div>
                 <% end %>
-              </ul>
-          </div>
         </div>
       </div>
     </header><!-- ユーザーのヘッダー終わり -->

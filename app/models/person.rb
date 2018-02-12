@@ -4,9 +4,11 @@ class Person < ApplicationRecord
 
 	has_many :items
 
-	validates :name, presence: true
-	validates :address, presence: true
-	validates :phone, presence: true
-	validates :introduction, presence: true
-	validates :image, presence: true
+	validates :lastname,:firstname,:kana_lastname,:kana_firstname,:phone,:postal_code,:address,:address2,:introduction,:introduction2,:area,
+	:presence true
+
+	def view_lastname_and_firstname
+		self.lastname + ' ' + self.firstname + ''
+	end
+
 end

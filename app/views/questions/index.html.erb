@@ -6,7 +6,8 @@
 
 <% @questions.each do |q| %>
 <div class="make-question">
-	<p>名前　　　　　:<%= q.name %></p><br>
+	<p>名前　　　　　:<%= q.lastname %>　<%= q.firstname %></p><br>
+	<P>カタカナ　　　:<%= q.kana_lastname %>  <%=q.kana_firstname %></P><br>
 
 	<p>メールアドレス:<%= q.mail %></p><br>
 

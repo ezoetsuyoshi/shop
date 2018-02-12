@@ -1,5 +1,5 @@
 <section>
-	<h2 class="text-center">＜会員登録情報＞</h2>
+	<h3>＜会員登録情報＞</h3>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -11,40 +11,30 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><%= @user.name %></td>
-				<td><%= @user.address %></td>
+				<td><%= @user.lastname %>　<%= @user.firstname %></td>
+				<td><%= @user.address %><%= @user.address2 %></td>
 				<td><%= @user.email %></td>
 				<td><%= @user.phone %></td>
 			</tr>
 		</tbody>
 	</table>
-	<h2 class="text-center">＜購入履歴＞</h2>
+	<h3>＜購入情報＞</h3><br><br>
 	<% if @records.presence == nil %>
 		<p>購入履歴はありません</p>
 	<% else %>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>購入日</th>
-				<th>商品</th>
-				<th>1個あたりの金額</th>
-				<th>購入数</th>
-				<th>配送先</th>
-			</tr>
-		</thead>
-		<% @records.each do |record| %>
-				<tbody>
-					<tr>
-						<td><%= record.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-						<td><%= record.item.name %></td>
-						<td><%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></td>
-						<td><%= record.count %></td>
-						<td><%= record.delivery.name %></td>
-						<td><%= record.delivery.address %></td>
-					</tr>
-				</tbody>
-		<% end %>
-	</table>
+						<% @records.each do |record| %>
+						<%= form_for record, url: record_path(record.id) do |f| %>
+							<th>購入日:　 <%= record.created_at.strftime('%Y/%m/%d %H:%M') %></th><br>
+							<th>商品:　　 <%= record.item.name %></th><br>
+							<th>金額:　　 <%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></th><br>
+							<th>購入数:　 <%= record.count %></th><br>
+							<th>合計金額: <%= number_to_currency(record.item.price*record.count, :unit => "￥", :precision => 0) %></th><br>
+							<th>生産者:　 <%= record.item.person.lastname %>  <%= record.item.person.firstname %></th><br>
+							<th>配送先:　 <%= record.delivery.lastname %><%= record.delivery.lastname %>　<%= record.delivery.postal_code %><%= record.delivery.address %><%= record.delivery.address2 %>　<%= record.delivery.phone %></th><br>
+							<th>配送状況: <%= f.select :active, Record.actives_i18n.keys.map { |k| [Record.actives_i18n[k], k]} %></th>
+							<th><%= f.submit "変更する" %></td><br><br><br>
+						<% end %>
+						<% end %>
 	<% end %>
 </section>
 

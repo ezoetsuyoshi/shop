@@ -3,7 +3,7 @@
 <% end %>
 
 <section>
-	<h2 class="text-center">お問い合わせ</h2>
+	<h2 class="text-center">お問い合わせ</h2><br><br>
 	<% if @question.errors.any? %>
     	<ul>
       		<% @question.errors.full_messages.each do |message| %>
@@ -16,22 +16,27 @@
 
 		<div class="text-center">お名前</div>
 		<div class="text-center">
-			<%= f.text_field :name, :size=>"40" %>
+			姓：<%= f.text_field :lastname, :size=>"20",placeholder:"例）　山田" %>　名：<%= f.text_field :firstname, :size=>"20",placeholder:"例）　太郎" %>
+		</div><br>
+
+		<div class="text-center">お名前（カナ）</div>
+		<div class="text-center">
+			セイ<%= f.text_field :kana_lastname, :size=>"20",placeholder:"例）　ヤマダ" %>　メイ<%= f.text_field :kana_firstname, :size=>"20",placeholder:"例）　タロウ" %>
 		</div><br>
 
 		<div class="text-center">メールアドレス</div>
 		<div class="text-center">
-			<%= f.text_field :mail, :size=>"40" %>
+			<%= f.text_field :mail, :size=>"40",placeholder:"例）　***@****.com" %>
 		</div><br>
 
-		<div class="text-center">電話番号</div>
+		<div class="text-center">電話番号（半角、ハイフンあり）</div>
 		<div class="text-center">
-			<%= f.text_field :phone, :size=>"40" %>
+			<%= f.text_field :phone, :size=>"40",placeholder:"例）　090-0000-0000" %>
 		</div><br>
 
-		<div class="text-center">問い合わせ内容</div>
+		<div class="text-center">お問い合わせ内容</div>
 		<div class="text-center">
-			<%= f.text_area :content, :size=>"60x15" %>
+			<%= f.text_area :content, :size=>"60x15",placeholder:"1000文字以内" %>
 		</div><br>
 		<div class="text-center">
 			<%= f.submit "送信する" %>
