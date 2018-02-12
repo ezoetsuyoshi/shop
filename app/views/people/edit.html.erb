@@ -10,17 +10,29 @@
 
 <%= form_for(@person) do |f| %>
 	<div class="text-center border-line">
-    	<P>名前</P>
-    	<%= f.text_field :name %>
- 	</div>
-	<div class="border-line">
-		<p class="text-center">写真</p>
-		<div class="margin-left"><%= f.attachment_field :image %></div>
-	</div>
-	<div class="text-center border-line">
-    	<p>住所</p>
-    	<%= f.text_field :address,size: "60" %>
- 	</div>
+      <P>氏名</P>
+      <%= f.text_field :lastname %>　<%= f.text_field :firstname %>
+  </div>
+  <div class="text-center border-line">
+      <P>氏名（カタカナ）</P>
+      <%= f.text_field :kana_lastname %>　<%= f.text_field :kana_firstname %>
+  </div>
+  <div class="border-line">
+    <p class="text-center">写真</p>
+    <div class="margin-left"><%= f.attachment_field :image %></div>
+  </div>
+  <div class="text-center border-line">
+      <p>郵便番号</p>
+      <%= f.text_field :postal_code, placeholder: "半角数字" %>
+  </div>
+  <div class="text-center border-line">
+      <p>住所</p>
+      <%= f.text_field :address,size: "40" %>
+  </div>
+  <div class="text-center border-line">
+      <p>建物名・マンション名、号室</p>
+      <%= f.text_field :address2,size: "40" %>
+  </div>
   <div class="text-center border-line">
       <p>生産地(市まで)</p>
       <%= f.text_field :area %>

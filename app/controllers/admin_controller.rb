@@ -9,4 +9,8 @@ class AdminController < ApplicationController
 		@user = User.find(params[:id])
 		@records = Record.where(user_id: @user.id).order("id desc")
 	end
+
+	def mypage_index
+		@users = User.all
+	end
 end

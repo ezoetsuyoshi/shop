@@ -17,13 +17,13 @@
 						<div class="cart-price"><%= number_to_currency(cart.item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span></div><br>
 						<div>
 							＜生産者名＞
-							<%= link_to introduction_path do %>
-								<%= cart.item.person.name %>
+							<%= link_to user_person_path(cart.item.person.id) do %>
+								<%= cart.item.person.lastname %>  <%= cart.item.person.firstname %>
 							<% end %>
 						</div><br>
 						<div>残り<%= cart.item.stock %>個</div><br>
 						<%= form_for cart do |f| %>
-							<div><%= f.number_field :count,min:1,max:cart.item.stock %>個<span>　　<%= f.submit "個数変更" %></span>
+							<div><%= f.select :count, 1..cart.item.stock %>個<span>　　<%= f.submit "個数変更" %></span>
 							</div>
 						<% end %>
 					</div>
@@ -34,20 +34,20 @@
 		<% end %>
 		<% if @carts.where(user_id:current_user.id).empty? %>
 		<% else %>
-			<div class="cart-price cart-left-margin">合計金額　<%= number_to_currency(@total_price, :unit => "￥", :precision => 0) %>　(税込)
-			</div>
-			<div>配送先情報</div>
-			<%= form_for @delivery do |f| %>
-				<div>名前</div>
-				<%= f.text_field :name, value: "#{current_user.name}" %><br><br>
-				<div>住所</div>
-				<%= f.text_field :address, value: "#{current_user.address}", class: "delivery-text" %><br><br>
-				<div>電話番号</div>
-				<%= f.text_field :phone, value: "#{current_user.phone}" %><br><br>
-				<%= f.submit "購入", class: "square_btn", "data-confirm" => "本当に購入しますか？" %>
+			<% if @total_price >= 5000 %>
+				<div class="cart-price cart-left-margin">送料無料</div>
+				<div class="cart-price cart-left-margin">合計金額　<%= number_to_currency(@total_price, :unit => "￥", :precision => 0) %>　(税込)
+				</div>
+			<% else %>
+				<div class="cart-price cart-left-margin">送料 <%= number_to_currency(@fee, :unit => "￥", :precision => 0) %></div>
+				<div class="cart-price cart-left-margin">合計金額　<%= number_to_currency(@total_price+@fee, :unit => "￥", :precision => 0) %>　(税込)
+				</div>
 			<% end %>
+				<%= link_to new_delivery_path do %>
+					<div class="square_btn">購入手続きへ</div>
+				<% end %>
 			<%= link_to items_path do %>
-			<div class="square_btn2">買い物を続ける</div>
+				<div class="square_btn2">買い物を続ける</div>
 			<% end %>
 		<% end %>
 	</div>

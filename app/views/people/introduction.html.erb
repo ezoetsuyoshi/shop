@@ -9,11 +9,11 @@
 								<%= attachment_image_tag p, :image %>
 							</div>
 						<div class="col-lg-6">
-							<div><%= p.name %>さん</div><br>
+							<div><%= p.lastname %>  <%= p.firstname %>さん</div><br>
 							<div>野菜の生産地:　<%= p.area %></div><br>
 							<div><%= p.introduction %></div><br><br>
 							<%= link_to user_person_path(p) do %>
-								<div class="text-border"><%= p.name %>さんの掲載商品一覧へ</div>
+								<div class="text-border"><%= p.lastname %>  <%= p.firstname %>さんの掲載商品一覧へ</div>
 							<% end %>
 						</div>
 					</div>

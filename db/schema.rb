@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210041534) do
+ActiveRecord::Schema.define(version: 20180212030731) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -44,7 +44,12 @@ ActiveRecord::Schema.define(version: 20180210041534) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.string "name"
+    t.string "lastname"
+    t.string "firstname"
+    t.string "kana_lastname"
+    t.string "kana_firstname"
+    t.integer "postal_code"
+    t.string "address2"
     t.string "address"
     t.string "phone"
     t.datetime "created_at", null: false
@@ -64,8 +69,13 @@ ActiveRecord::Schema.define(version: 20180210041534) do
   end
 
   create_table "people", force: :cascade do |t|
-    t.string "name"
+    t.string "lastname"
+    t.string "firstname"
+    t.string "kana_lastname"
+    t.string "kana_firstname"
+    t.integer "postal_code"
     t.string "address"
+    t.string "address2"
     t.string "phone"
     t.text "image_id"
     t.text "introduction"
@@ -76,7 +86,10 @@ ActiveRecord::Schema.define(version: 20180210041534) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "name"
+    t.string "lastname"
+    t.string "firstname"
+    t.string "kana_lastname"
+    t.string "kana_firstname"
     t.string "mail"
     t.text "content"
     t.datetime "created_at", null: false
@@ -92,12 +105,12 @@ ActiveRecord::Schema.define(version: 20180210041534) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "count"
+    t.integer "active", default: 0
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "name", default: "", null: false
     t.string "phone", default: "", null: false
     t.string "address", default: "", null: false
     t.string "reset_password_token"
@@ -110,6 +123,12 @@ ActiveRecord::Schema.define(version: 20180210041534) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "lastname"
+    t.string "firstname"
+    t.string "kana_lastname"
+    t.string "kana_firstname"
+    t.integer "postal_code"
+    t.string "address2"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

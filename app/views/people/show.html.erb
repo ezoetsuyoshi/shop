@@ -3,11 +3,14 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<%= attachment_image_tag @person, :image %><br>
-				<div><%= @person.name %></div>
+				<div><%= @person.lastname %>  <%= @person.firstname %></div>
+				<div><%= @person.kana_lastname %>  <%= @person.kana_firstname %></div><br>
+				<div><%= @person.postal_code %></div>
 				<div><%= @person.address %></div>
-				<div><%= @person.area %></div>
-				<div><%= @person.phone %></div>
-				<%= link_to "　編集　", edit_person_path(@person.id) %>
+				<div><%= @person.address2 %></div><br>
+				<div><%= @person.phone %></div><br>
+				<div>生産地：<%= @person.area %></div><br>
+				<%= link_to "編集　", edit_person_path(@person.id) %>
 				<%= link_to "　削除　", person_path, method: :delete, "data-confirm" => "本当に削除してもよろしいですか？" %>
 				<%= link_to "　一覧へ戻る　", people_path %>
 			</div>
@@ -16,7 +19,7 @@
 			</div>
 		</div>
 
-<h2 class="text-center">＜<%= @person.name %>さんの掲載商品一覧＞</h2>
+<h2 class="text-center">＜<%= @person.lastname %>  <%= @person.firstname %>さんの掲載商品一覧＞</h2><br>
 	<div class="row">
 		<% @items.each do |i| %>
 			<% if i.person_id == @person.id %>

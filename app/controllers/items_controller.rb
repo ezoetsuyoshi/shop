@@ -53,10 +53,6 @@ class ItemsController < ApplicationController
 		@records = Record.where(user_id: current_user.id).order("id desc")
 	end
 
-	def mypage_index
-		@users = User.all
-	end
-
 
 	private
 

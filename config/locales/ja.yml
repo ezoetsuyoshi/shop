@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      user:　ユーザー
+    attributes:
+      user:
+        name: 名前
+        password: パスワード
+        lastname: 名字
+        firstname: 名前
+        kana_lastname: 名字(カナ)
+        kana_firstname: 名前(カナ)
+        postal_code: 郵便番号
+        address: 住所
+        address2: 建物/部屋番号
+        phone: 電話番号
+        encrypted_password: パスワード(確認用)
+        password_confirmation: パスワード(確認用)
+        email: メールアドレス
+        current_password: 現在のパスワード
+      question:
+        lastname: 名字
+        firstname: 名前
+        kana_lastname: 名字(カナ)
+        kana_firstname: 名前(カナ)
+        phone: 電話番号
+        mail: メールアドレス
+        content: お問い合わせ内容
+  enums:
+      record:
+        active:
+          preparation: 発送準備中
+          shipment: 発送しました

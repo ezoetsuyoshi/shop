@@ -3,14 +3,14 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<%= attachment_image_tag @person, :image %><br>
-					<div class="text-center"><%= @person.name %>さん</div>
+					<div class="text-center"><%= @person.lastname %>　<%= @person.firstname %>さん</div>
 				</div>
 				<div class="col-lg-6 person-text">
 					<%= @person.introduction2 %>
 				</div>
 			</div>
 
-			<h2 class="text-center">＜<%= @person.name %>さんの掲載商品一覧＞</h2><br><br>
+			<h2 class="text-center">＜<%= @person.lastname %>　<%= @person.firstname %>さんの掲載商品一覧＞</h2><br><br>
 			<div class="row">
 				<% @items.each do |i| %>
 					<% if i.person_id == @person.id %>

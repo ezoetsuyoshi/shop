@@ -1,6 +1,3 @@
 class Question < ApplicationRecord
-	validates :name, presence: true
-	validates :mail, presence: true
-	validates :content, presence: true
-	validates :phone, presence: true
+	validates :lastname,:firstname,:kana_lastname,:kana_firstname,:mail,:phone,:content,presence: true,length: {maximum:1000}
 end
