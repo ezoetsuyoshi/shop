@@ -11,10 +11,11 @@
 	<% @users.each do |u| %>
 	<tbody>
 		<tr>
-			<td><%= u.name %></td>
-			<td><%= u.address %></td>
-			<td><%= u.email %></td>
-			<td><%= u.phone %></td>
+				<td><%= u.name %></td>
+				<td><%= u.address %></td>
+				<td><%= u.email %></td>
+				<td><%= u.phone %></td>
+				<td><%= link_to "購入履歴", admin_user_show_path(u.id) %></td>
 		</tr>
 	</tbody>
 	<% end %>

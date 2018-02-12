@@ -1,5 +1,5 @@
 <div class="mainimage">
-	<!--<p class="logo">〜全国野菜直売所〜</p>-->
+	<p class="logo">〜野菜直売所〜</p>
 	<div class="top-box">
 		<p class="top-text">全国各地の美味しい新鮮な野菜を販売しています！！ <br>
 			採れすぎてしまった野菜などもまとめ買いでお得に！！<br>
@@ -15,7 +15,11 @@
 	<div class="row">
 		<div class="col-lg-8">
 			<div class="search-box">
+				<% if user_signed_in? %>
 				<p class="items-top">〜１３時までにご注文で本日お届け！！〜</p>
+				<% else %>
+				<P class="items-top">購入は会員登録後にお願い致します</P>
+				<% end %>
 				<div><%= form_tag(items_path, method: :get) do %><!--検索機能-->
   					 <%= text_field_tag :search, "", :placeholder => "例：トマト" %>
   					 <%= submit_tag "検索", :name => nil %>
@@ -24,8 +28,14 @@
 			</div>
 			<% @items.each do |item| %>
 			<div class="inline">
-				<%= link_to item_path(item.id) do %>
-					<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
+				<% if admin_signed_in? %>
+					<%= link_to admin_item_show_path(item.id) do %>
+						<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
+					<% end %>
+				<% else %>
+					<%= link_to item_path(item.id) do %>
+						<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
+					<% end %>
 				<% end %>
 				<div><%= item.name %></div>
 				<div class="item-price"><%= number_to_currency(item.price, :unit => "￥", :precision => 0) %></div>

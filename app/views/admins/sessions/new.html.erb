@@ -1,0 +1,29 @@
+<section>
+  <h2 class="text-center">管理者ログイン</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="text-center border-line">
+      <p>メールアドレス</p>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="text-center border-line">
+      <p>パスワード</p>
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+
+    <!--<% if devise_mapping.rememberable? -%>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end -%>-->
+
+    <div class="text-center border-line">
+      <%= f.submit "ログイン" %><br><br>
+    </div>
+  <% end %>
+
+<%# render "admins/shared/links" %>

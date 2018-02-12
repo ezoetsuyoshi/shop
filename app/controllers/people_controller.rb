@@ -45,10 +45,15 @@ class PeopleController < ApplicationController
 		@people = Person.all
 	end
 
+	def user_person
+		@person = Person.find(params[:id])
+		@items = Item.all
+	end
+
 
 	private
 
 	def person_params
-		params.require(:person).permit(:name, :address, :phone, :image, :introduction)
+		params.require(:person).permit(:name, :address, :phone, :image, :introduction,:introduction2,:area)
 	end
 end

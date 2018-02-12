@@ -14,8 +14,12 @@ class CartsController < ApplicationController
 	def create
 		@cart = Cart.new(cart_params)
 		@cart.user_id = current_user.id
-		@cart.save
-		redirect_to carts_path
+		if Cart.find_by(item_id: @cart.item_id,user_id:current_user.id)
+       		redirect_to carts_path, flash: {n: "選んだ商品は既にカートに入っています"}
+    	else
+			@cart.save
+			redirect_to carts_path
+		end
 	end
 
 	def update

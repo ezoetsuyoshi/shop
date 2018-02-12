@@ -5,12 +5,14 @@
 				<%= attachment_image_tag @person, :image %><br>
 				<div><%= @person.name %></div>
 				<div><%= @person.address %></div>
+				<div><%= @person.area %></div>
 				<div><%= @person.phone %></div>
-				<%= link_to "編集", edit_person_path(@person.id) %>
-				<%= link_to "削除", person_path, method: :delete, "data-confirm" => "本当に削除してもよろしいですか？" %>
+				<%= link_to "　編集　", edit_person_path(@person.id) %>
+				<%= link_to "　削除　", person_path, method: :delete, "data-confirm" => "本当に削除してもよろしいですか？" %>
+				<%= link_to "　一覧へ戻る　", people_path %>
 			</div>
-			<div class="col-lg-9">
-				<%= @person.introduction %>
+			<div class="col-lg-6 person-text">
+				<%= @person.introduction2 %>
 			</div>
 		</div>
 
