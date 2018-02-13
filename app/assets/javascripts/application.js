@@ -15,3 +15,11 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function() {
+  $(document).on('turbolinks:render', function() {
+    if ($('.h-adr').length) {
+      new YubinBango.MicroformatDom();
+    }
+  });
+});

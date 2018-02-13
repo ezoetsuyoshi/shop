@@ -100,7 +100,7 @@ a:link, a:visited{
 section{
 	padding-top: 30px;
 	padding-bottom: 30px;
-	background-color: #f1ca8570;
+	
 }
 .inline{
 	display: inline-block;
@@ -284,6 +284,13 @@ footer{
 }
 .head-text{
 	color: gray;
+}
+.content {
+  min-height: calc(100vh - 70px);
+  background-color: #f1ca8570;
+}
+#error_explanation{
+	color: red;
 }
 @import "bootstrap-sprockets";
 @import "bootstrap";

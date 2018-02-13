@@ -13,17 +13,18 @@
       <P>お名前（カナ）</P>
       セイ：<%= f.text_field :kana_lastname, autofocus: true %>　メイ：<%= f.text_field :kana_firstname, autofocus: true %>
     </div>
-
+<div class="h-adr">
+  <span class="p-country-name" style="display:none;">Japan</span>
     <div class="text-center border-line">
       <p>郵便番号（半角、ハイフンなし）</p>
-      <%= f.text_field :postal_code, autofocus: true,placeholder:"例）　2130001" %>
+      <%= f.text_field :postal_code,size: 15, autofocus: true,class:"form_style form_input p-postal-code",maxlength:"8",placeholder:"例）　2130001" %>
     </div>
 
     <div class="text-center border-line">
       <p>住所（全角）</p>
-      <%= f.text_field :address, autofocus: true,placeholder:"例）　東京都新宿区新宿１−１−１",size: 40 %>
+      <%= f.text_field :address, autofocus: true,class:"form_style form_input p-region p-locality p-street-address p-extended-address",placeholder:"例）　東京都新宿区新宿１−１−１",size: 40 %>
     </div>
-
+</div>
     <div class="text-center border-line">
       <p>建物名・マンション名、号室（全角）</p>
       <%= f.text_field :address2, autofocus: true,placeholder:"例）　佐藤ハイツ　２０１号室",size: 40 %>

@@ -4,5 +4,5 @@ class Delivery < ApplicationRecord
 	accepts_nested_attributes_for :records
 
 	validates :lastname,:firstname,:kana_lastname,:kana_firstname,:phone,:postal_code,:address,:address2,
-	:presence true
+	presence: true
 end

@@ -5,20 +5,23 @@
 	<%= form_for @delivery do |f| %>
 			<div class="text-center">お名前</div>
 		<div class="text-center">
-			姓：<%= f.text_field :lastname, :size=>"20",placeholder:"例）　山田" %>　名：<%= f.text_field :firstname, :size=>"20",placeholder:"例）　太郎" %>
+			姓：<%= f.text_field :lastname,value: "#{current_user.lastname}", :size=>"20",placeholder:"例）　山田" %>　名：<%= f.text_field :firstname,value: "#{current_user.firstname}", :size=>"20",placeholder:"例）　太郎" %>
 		</div><br>
 
 		<div class="text-center">お名前（カナ）</div>
 		<div class="text-center">
-			セイ：<%= f.text_field :kana_lastname, :size=>"20",placeholder:"例）　ヤマダ" %>　メイ：<%= f.text_field :kana_firstname, :size=>"20",placeholder:"例）　タロウ" %>
+			セイ：<%= f.text_field :kana_lastname,value: "#{current_user.kana_lastname}", :size=>"20",placeholder:"例）　ヤマダ" %>　メイ：<%= f.text_field :kana_firstname,value: "#{current_user.kana_firstname}", :size=>"20",placeholder:"例）　タロウ" %>
 		</div><br>
+	<div class="h-adr">
+  		<span class="p-country-name" style="display:none;">Japan</span>
 		<div class="text-center">郵便番号</div>
 		<div class="text-center">
-			<%= f.text_field :postal_code, value: "#{current_user.postal_code}", class: "delivery-text" %>
+			<%= f.text_field :postal_code, value: "#{current_user.postal_code}", class: "form_style form_input p-postal-code delivery-text",maxlength:"8" %>
 		</div><br>
 		<div class="text-center">住所</div>
-		<div class="text-center"><%= f.text_field :address, value: "#{current_user.address}", class: "delivery-text" %>
-		</div><br>
+		<div class="text-center"><%= f.text_field :address, value: "#{current_user.address}", class: "fform_style form_input p-region p-locality p-street-address p-extended-address delivery-text" %>
+		</div>
+	</div><br>
 		<div class="text-center">建物名、マンション名,号室</div>
 		<div class="text-center">
 			<%= f.text_field :address2, value: "#{current_user.address2}", class: "delivery-text" %>

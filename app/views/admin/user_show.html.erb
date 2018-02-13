@@ -1,23 +1,4 @@
 <section>
-	<h3>＜会員登録情報＞</h3>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>名前</th>
-				<th>住所</th>
-				<th>メールアドレス</th>
-				<th>電話番号</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><%= @user.lastname %>　<%= @user.firstname %></td>
-				<td><%= @user.address %><%= @user.address2 %></td>
-				<td><%= @user.email %></td>
-				<td><%= @user.phone %></td>
-			</tr>
-		</tbody>
-	</table>
 	<h3>＜購入情報＞</h3><br><br>
 	<% if @records.presence == nil %>
 		<p>購入履歴はありません</p>
