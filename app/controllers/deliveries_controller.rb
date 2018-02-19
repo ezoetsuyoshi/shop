@@ -6,7 +6,14 @@ class DeliveriesController < ApplicationController
 
 	def create #購入ボタンを押した際のアクション。配送先・購入商品情報を保存し、カート内全削除し、アイテムのストックを減らす。
 		@carts = Cart.where(user_id: current_user.id)
-		@delivery = Delivery.create(delivery_params)
+		@total_price = 0
+		@carts.each do |cart|
+	    	@total_price += cart.item.price*cart.count
+    	end
+		@delivery = Delivery.new(delivery_params)
+		@delivery.user_id = current_user.id
+		@delivery.total_price = @total_price
+		@delivery.save
 		@carts.each do |cart|
 			if cart.item.stock >= cart.count
 				cart.item.stock -= cart.count
@@ -29,6 +36,6 @@ class DeliveriesController < ApplicationController
 
 	private
 	def delivery_params
-		params.require(:delivery).permit(:lastname,:firstname,:kana_lastname,:kana_firstname,:address,:address2,:postal_code, :phone, records_attributes:[:user_id,:item_id,:price,:count,:delivery_id,:active])
+		params.require(:delivery).permit(:lastname,:firstname,:kana_lastname,:kana_firstname,:address,:address2,:postal_code, :phone,:user_id,:total_price)
 	end
 end

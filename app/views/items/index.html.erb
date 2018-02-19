@@ -1,59 +1,56 @@
-<div class="mainimage">
-	<p class="logo">〜野菜直売所〜</p>
-	<div class="top-box">
-		<p class="top-text">全国各地の美味しい新鮮な野菜を販売しています！！ <br>
-			採れすぎてしまった野菜などもまとめ買いでお得に！！<br>
-			本日採れたての野菜も多数あります！<br>
-			ぜひご覧ください！
-		</p>
+<div id="sample_wrap">
+	<div id="sample">
+		<div class="mainimage"></div>
+		<div class="mainimage2"></div>
+		<div class="mainimage3"></div>
 	</div>
 </div>
-
 <section><!--商品一覧-->
-
-<div class="container">
-	<div class="row">
-		<div class="col-lg-8">
-			<div class="search-box">
-				<% if user_signed_in? %>
-				<p class="items-top">〜１３時までにご注文で本日お届け！！〜</p>
-				<% else %>
-				<P class="items-top">購入は会員登録後にお願い致します</P>
-				<% end %>
-				<div><%= form_tag(items_path, method: :get) do %><!--検索機能-->
-  					 <%= text_field_tag :search, "", :placeholder => "例：トマト" %>
-  					 <%= submit_tag "検索", :name => nil %>
-					 <% end %>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="search-box">
+					<p class="items-top">〜１３時までにご注文で本日お届け！！ 送料一律５４０円！５０００円以上購入で送料無料！！〜</p>
+					<div>
+						<%= form_tag(items_path, method: :get) do %><!--検索機能-->
+		  					ひらがなで検索：<%= text_field_tag :search, "", :placeholder => "例）とまと",size: 30 %>
+		  					<%= submit_tag "検索", :yomi_name => nil %>
+						<% end %>
+					</div>
 				</div>
+				<% @items.each do |item| %>
+					<div class="inline">
+						<% if admin_signed_in? %>
+							<%= link_to admin_item_show_path(item.id) do %>
+								<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
+							<% end %>
+						<% else %>
+							<%= link_to item_path(item.id) do %>
+								<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
+							<% end %>
+						<% end %>
+						<div><%= item.name %></div>
+						<div class="item-price"><%= number_to_currency(item.price, :unit => "￥", :precision => 0) %></div>
+						<% if item.stock == 0 %>
+							<div class="bold">売り切れ</div>
+						<% else %>
+							<div>残り<%= item.stock %>個</div>
+						<% end %>
+					</div>
+				<% end %><br>
+				<%= paginate @items, class: "pagenate" %>
 			</div>
-			<% @items.each do |item| %>
-			<div class="inline">
-				<% if admin_signed_in? %>
-					<%= link_to admin_item_show_path(item.id) do %>
-						<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
-					<% end %>
-				<% else %>
-					<%= link_to item_path(item.id) do %>
-						<div class="box"><%= attachment_image_tag item, :image, :fill, 200, 150 %></div>
-					<% end %>
-				<% end %>
-				<div><%= item.name %></div>
-				<div class="item-price"><%= number_to_currency(item.price, :unit => "￥", :precision => 0) %></div>
-				<div>残り<%= item.stock %>個</div>
-			</div>
-			<% end %>
-			<br><%= paginate @items, class: "pagenate" %>
-		</div>
 
-		<div class="col-lg-3 col-lg-offset-1">
-			<p class="category">カテゴリ別</p>
-			<% @categories.each do |c| %>
-				<%= link_to category_path(c.id) do %>
-					<div>・<%= c.name %></div><br>
+			<div class="col-lg-2 col-lg-offset-1">
+				<p class="category">カテゴリ別</p>
+				<% @categories.each do |c| %>
+					<%= link_to category_path(c.id) do %>
+						<ul>
+							<li class="cart-page"><%= c.name %></li><br>
+						</ul>
+					<% end %>
 				<% end %>
-			<% end %>
+			</div>
 		</div>
 	</div>
-</div>
-
 </section>

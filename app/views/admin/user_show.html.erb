@@ -1,22 +1,54 @@
 <section>
-	<h3>＜購入情報＞</h3><br><br>
+	<h3>＜購入情報＞</h3><%= link_to "一覧へ戻る", mypage_index_path, class: "mypege-show-link" %><br><br>
 	<% if @records.presence == nil %>
 		<p>購入履歴はありません</p>
 	<% else %>
-						<% @records.each do |record| %>
-						<%= form_for record, url: record_path(record.id) do |f| %>
-							<th>購入日:　 <%= record.created_at.strftime('%Y/%m/%d %H:%M') %></th><br>
-							<th>商品:　　 <%= record.item.name %></th><br>
-							<th>金額:　　 <%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></th><br>
-							<th>購入数:　 <%= record.count %></th><br>
-							<th>合計金額: <%= number_to_currency(record.item.price*record.count, :unit => "￥", :precision => 0) %></th><br>
-							<th>生産者:　 <%= record.item.person.lastname %>  <%= record.item.person.firstname %></th><br>
-							<th>配送先:　 <%= record.delivery.lastname %><%= record.delivery.lastname %>　<%= record.delivery.postal_code %><%= record.delivery.address %><%= record.delivery.address2 %>　<%= record.delivery.phone %></th><br>
-							<th>配送状況: <%= f.select :active, Record.actives_i18n.keys.map { |k| [Record.actives_i18n[k], k]} %></th>
-							<th><%= f.submit "変更する" %></td><br><br><br>
+		<div class="delivery-box2">
+			<% @deliveries.each do |delivery| %>
+				<div class="record-border">
+					<div class="delivery-font">
+						購入日：<%= delivery.created_at.strftime('%Y/%m/%d %H:%M') %>
+					</div>
+					<div class="delivery-text delivery-font">配送先：
+						<%= delivery.lastname %>  <%= delivery.firstname %>　　<%= delivery.address %>　<%= delivery.address2 %>
+					</div><br><br>
+					<% @records.each do |record| %>
+						<% if delivery.id == record.delivery_id %>
+							<div class="record-box">
+								<div>商品名</div>
+								<div><%= record.item.name %></div><br>
+								<div>1個あたりの金額</div>
+								<div><%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></div><br>
+								<div>購入数</div>
+								<div><%= record.count %></div><br>
+								<div>小計</div>
+								<div><%= number_to_currency(record.item.price*record.count, :unit => "￥", :precision => 0) %></div><br>
+								<div>生産者</div>
+								<div>
+									<%= record.item.person.lastname %>　<%= record.item.person.firstname %>　　<%= record.item.person.phone %>
+								</div><br>
+								<div>
+									配送状況
+									<%= form_for record, url: record_path(record.id) do |f| %>
+										<%= f.select :active, Record.actives_i18n.keys.map { |k| [Record.actives_i18n[k], k]} %>
+										<%= f.submit "変更する" %>
+									<% end %>
+								</div><br><br>
+							</div>
 						<% end %>
-						<% end %>
+					<% end %>
+					<% if delivery.total_price <= 5000 %>
+						<div class="cart-price2">
+							合計金額（送料込み）<%= number_to_currency(delivery.total_price + @fee, :unit => "￥", :precision => 0) %>
+						</div>
+					<% else %>
+						<div class="cart-price2">
+							合計金額（送料込み）<%= number_to_currency(delivery.total_price, :unit => "￥", :precision => 0) %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
 	<% end %>
 </section>
-
 

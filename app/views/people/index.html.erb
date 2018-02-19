@@ -1,24 +1,24 @@
 <section>
 	<h2 class="text-center">＜生産者一覧＞</h2>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>名前</th>
-			<th>住所</th>
-			<th>電話番号</th>
-		</tr>
-	</thead>
-	<% @people.each do |p| %>
-	<tbody>
-		<tr>
-			<td><%= p.id %></td>
-			<td><%= p.lastname %>  <%= p.firstname %></td>
-			<td><%= p.address %><%= p.address2 %></td>
-			<td><%= p.phone %></td>
-			<td><button><%= link_to "詳細へ", person_path(p.id) %></button></td>
-		</tr>
-	</tbody>
-	<% end %>
-</table>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>名前</th>
+				<th>住所</th>
+				<th>電話番号</th>
+			</tr>
+		</thead>
+		<% @people.each do |p| %>
+			<tbody>
+				<tr>
+					<td><%= p.id %></td>
+					<td><%= p.lastname %>  <%= p.firstname %></td>
+					<td><%= p.address %><%= p.address2 %></td>
+					<td><%= p.phone %></td>
+					<td><button><%= link_to "詳細へ", person_path(p.id) %></button></td>
+				</tr>
+			</tbody>
+		<% end %>
+	</table>
 </section>

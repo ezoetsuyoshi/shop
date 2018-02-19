@@ -1,26 +1,26 @@
 <section>
 	<h2 class="text-center">＜会員一覧＞</h2>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>名前</th>
-			<th></th>
-			<th>住所</th>
-			<th>メールアドレス</th>
-			<th>電話番号</th>
-		</tr>
-	</thead>
-	<% @users.each do |u| %>
-	<tbody>
-		<tr>
-				<td><%= u.lastname %>　<%= u.firstname %></td>
-				<td><%= u.kana_lastname %>　<%= u.kana_firstname %></td>
-				<td>〒<%= u.postal_code %>　　<%= u.address %>　<%= u.address2 %></td>
-				<td><%= u.email %></td>
-				<td><%= u.phone %></td>
-				<td><button><%= link_to "購入情報", admin_user_show_path(u.id) %></button></td>
-		</tr>
-	</tbody>
-	<% end %>
-</table>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>名前</th>
+				<th></th>
+				<th>住所</th>
+				<th>メールアドレス</th>
+				<th>電話番号</th>
+			</tr>
+		</thead>
+		<% @users.each do |u| %>
+			<tbody>
+				<tr>
+					<td><%= u.lastname %>　<%= u.firstname %></td>
+					<td><%= u.kana_lastname %>　<%= u.kana_firstname %></td>
+					<td>〒<%= u.postal_code %>　　<%= u.address %>　<%= u.address2 %></td>
+					<td><%= u.email %></td>
+					<td><%= u.phone %></td>
+					<td><button><%= link_to "購入情報", admin_user_show_path(u.id) %></button></td>
+				</tr>
+			</tbody>
+		<% end %>
+	</table>
 </section>

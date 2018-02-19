@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 		@categories = Category.all
 		@items = if params[:search]
      	#searchされた場合は、原文+.where('name LIKE ?', "%#{params[:search]}%")を実行
-     			Item.all.where('name LIKE ?', "%#{params[:search]}%")
+     			Item.where('yomi_name LIKE ?', "%#{params[:search]}%").page(params[:page]).reverse_order
     			else
       	#searchされていない場合は、原文そのまま
       			Item.all.page(params[:page]).reverse_order
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
 	def update
 		@item = Item.find(params[:id])
 		if @item.update(item_params)
-		   redirect_to item_path(@item.id)
+		   redirect_to admin_item_show_path(@item.id)
 		else
 			render :edit
 		end
@@ -50,14 +50,16 @@ class ItemsController < ApplicationController
 
 	def mypage
 		@user = User.find(current_user.id)
-		@records = Record.where(user_id: current_user.id).order("id desc")
+		@deliveries = Delivery.where(user_id: current_user.id).order("id desc")
+		@records = Record.all
+		@fee = 540
 	end
 
 
 	private
 
 	def item_params
-		params.require(:item).permit(:name, :price, :image, :category, :description, :person_id, :category_id, :stock)
+		params.require(:item).permit(:name, :price, :image, :category, :description, :person_id, :category_id, :stock,:yomi_name)
 	end
 
 end

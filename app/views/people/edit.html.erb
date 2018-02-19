@@ -1,58 +1,57 @@
 <section>
   <h2 class="text-center">＜生産者情報編集画面＞</h2><br><br>
 
-<% if @person.errors.any? %>
-    <ul>
-      	<% @person.errors.full_messages.each do |message| %>
-        <li class="error-message"><%= message %></li>
-      	<% end %>
-    </ul>
-<% end %>
+  <% if @person.errors.any? %>
+      <ul>
+        	<% @person.errors.full_messages.each do |message| %>
+          <li class="error-message"><%= message %></li>
+        	<% end %>
+      </ul>
+  <% end %>
 
-<%= form_for(@person) do |f| %>
-	<div class="text-center border-line">
+  <%= form_for(@person) do |f| %>
+  	<div class="text-center border-line">
       <P>お名前</P>
       姓：<%= f.text_field :lastname %>　名：<%= f.text_field :firstname %>
-  </div>
-  <div class="text-center border-line">
+    </div>
+    <div class="text-center border-line">
       <P>お名前（カタカナ）</P>
       セイ：<%= f.text_field :kana_lastname %>　メイ：<%= f.text_field :kana_firstname %>
-  </div>
-  <div class="border-line">
-    <p class="text-center">写真</p>
-    <div class="margin-left"><%= f.attachment_field :image %></div>
-  </div>
-  <div class="text-center border-line">
+    </div>
+    <div class="border-line">
+      <p class="text-center">写真</p>
+      <div class="margin-left"><%= f.attachment_field :image %></div>
+    </div>
+    <div class="text-center border-line">
       <p>郵便番号</p>
       <%= f.text_field :postal_code, placeholder: "半角数字" %>
-  </div>
-  <div class="text-center border-line">
+    </div>
+    <div class="text-center border-line">
       <p>住所</p>
       <%= f.text_field :address,size: "40" %>
-  </div>
-  <div class="text-center border-line">
+    </div>
+    <div class="text-center border-line">
       <p>建物名・マンション名、号室</p>
       <%= f.text_field :address2,size: "40" %>
-  </div>
-  <div class="text-center border-line">
-      <p>生産地(市まで)</p>
+    </div>
+    <div class="text-center border-line">
+      <p>生産地(市・区まで)</p>
       <%= f.text_field :area %>
-  </div>
-	<div class="text-center border-line">
+    </div>
+  	<div class="text-center border-line">
     	<p>電話番号</p>
     	<%= f.text_field :phone %>
- 	</div>
-  <div class="text-center border-line">
+   	</div>
+    <div class="text-center border-line">
       <p>一言紹介</p>
-    <%= f.text_area :introduction %>
-  </div>
- 	<div class="text-center border-line">
-  		<p>紹介文</p>
-		<%= f.text_area :introduction2, size: "60x15" %>
- 	</div>
- 	<div class="text-center">
- 		<%= f.submit "変更を保存する" %>
- 	</div>
-
-<% end %>
+      <%= f.text_area :introduction,placeholder: "30文字まで" %>
+    </div>
+   	<div class="text-center border-line">
+    	<p>紹介文</p>
+  		<%= f.text_area :introduction2, size: "60x15" %>
+   	</div>
+   	<div class="text-center">
+   		<%= f.submit "変更を保存する" %>
+   	</div>
+  <% end %>
 </section>

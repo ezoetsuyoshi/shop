@@ -1,33 +1,36 @@
 <section class="section-show">
 	<div class="container">
 		<div class="row">
-				<div class="col-lg-6"><%= attachment_image_tag @item, :image, :fill, 500, 500 %></div><!--商品写真、画面左側-->
-
-				<div class="col-lg-6"><!--商品情報、画面右側-->
-					<div class="show-title"><%= @item.name %></div>
-					<div class="show-price"><%= number_to_currency(@item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span></div>
-					<div>
-						＜生産者名＞
-						<%= link_to introduction_path do %>
-						<%= @item.person.lastname %>  <%= @item.person.firstname %>
-						<% end %>
-					</div>
-					<div class="show-item-top">＜商品説明＞<br><br><%= @item.description %></div>
+			<div class="col-lg-6"><%= attachment_image_tag @item, :image, :fill, 500, 500 %></div><!--商品写真、画面左側-->
+			<div class="col-lg-6"><!--商品情報、画面右側-->
+				<div class="show-title"><%= @item.name %></div>
+				<div class="show-price">
+					<%= number_to_currency(@item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span>
+				</div>
+				<div>
+					＜生産者名＞
+					<%= link_to introduction_path do %>
+						<span class="cart-page2"><%= @item.person.lastname %>  <%= @item.person.firstname %></span>
+					<% end %>
+				</div>
+				<div class="show-item-top">＜商品説明＞<br><%= @item.description %></div>
+				<% if @item.stock == 0 %>
+					<div class="bold text-color">申し訳ございません。ただいま品切れになっております。</div>
+				<% else %>
 					<div>残り<%= @item.stock %>個</div>
-						<%= form_for @cart do |f| %>
-							<%= f.select :count, 1..@item.stock %>個<br>
-							<%= f.hidden_field :item_id, value: @item.id %>
-							<% if user_signed_in? %>
-								<div><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><%= f.submit "カートに入れる", class: "square_btn3" %></div>
-							<% else %>
-							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+					<%= form_for @cart do |f| %>
+						<%= f.select :count, 1..@item.stock %>個<br>
+						<%= f.hidden_field :item_id, value: @item.id %><br>
+						<% if user_signed_in? %>
+							<div><%= f.submit "カートに入れる", class: "square_btn3" %></div>
+						<% else %>
 							<%= link_to new_user_session_path do %>
 								<div class="square_btn3">カートに入れる</div>
 							<% end %>
-							<% end %>
-
 						<% end %>
-				</div>
+					<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </section>

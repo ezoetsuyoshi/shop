@@ -20,19 +20,19 @@
 			</div>
 		</div>
 
-<h2 class="text-center">＜<%= @person.lastname %>  <%= @person.firstname %>さんの掲載商品一覧＞</h2><br>
-	<div class="row">
-		<% @items.each do |i| %>
-			<% if i.person_id == @person.id %>
-				<div class="inline">
-					<%= link_to item_path(i.id) do %>
-						<div class="box"><%= attachment_image_tag i, :image, :fill, 150, 150 %></div>
-					<% end %>
-					<div><%= i.name %></div>
-					<div class="item-price"><%= number_to_currency(i.price, :unit => "￥", :precision => 0) %></div>
-				</div>
+		<h2 class="text-center">＜<%= @person.lastname %>  <%= @person.firstname %>さんの掲載商品一覧＞</h2><br>
+		<div class="row">
+			<% @items.each do |i| %>
+				<% if i.person_id == @person.id %>
+					<div class="inline">
+						<%= link_to admin_item_show_path(i.id) do %>
+							<div class="box"><%= attachment_image_tag i, :image, :fill, 150, 150 %></div>
+						<% end %>
+						<div><%= i.name %></div>
+						<div class="item-price"><%= number_to_currency(i.price, :unit => "￥", :precision => 0) %></div>
+					</div>
+				<% end %>
 			<% end %>
-		<% end %>
+		</div>
 	</div>
-</div>
 </section>

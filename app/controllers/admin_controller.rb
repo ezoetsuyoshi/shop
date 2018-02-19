@@ -7,7 +7,9 @@ class AdminController < ApplicationController
 
 	def user_show
 		@user = User.find(params[:id])
-		@records = Record.where(user_id: @user.id).order("id desc")
+		@deliveries = Delivery.where(user_id: @user.id).order("id desc")
+		@records = Record.all
+		@fee = 540
 	end
 
 	def mypage_index

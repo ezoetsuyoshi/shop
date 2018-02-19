@@ -11,13 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
 
 $(document).ready(function() {
-  $(document).on('turbolinks:render', function() {
+  $(document).on('ready page:load', function() {
     if ($('.h-adr').length) {
       new YubinBango.MicroformatDom();
     }
