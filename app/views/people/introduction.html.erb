@@ -1,17 +1,17 @@
-<section class="border">
-	<h2 class="items-top">＜登録農家さん一覧＞</h2>
+<section>
+	<h3 class="people-text-top">登録農家さん一覧</h3>
 	<div class="container">
 		<div class="row people-top">
 			<% @people.each do |p| %>
-				<div class="col-lg-6 people-top">
-					<div class="row">
-							<div class="col-lg-6">
-								<%= attachment_image_tag p, :image %>
+				<div class="col-lg-6">
+					<div class="row inline2">
+							<div class="col-lg-5">
+								<%= attachment_image_tag p, :image, :fill, 200, 200 %>
 							</div>
-						<div class="col-lg-6">
-							<div><%= p.lastname %>  <%= p.firstname %>さん</div><br>
-							<div>野菜の生産地:　<%= p.area %></div><br>
-							<div><%= p.introduction %></div><br><br>
+						<div class="col-lg-7">
+							<div class="person-name"><%= p.lastname %>  <%= p.firstname %>さん</div><br>
+							<div class="person-border">野菜の生産地:　<span class="person-color"><%= p.area %></span></div><br>
+							<div class="person-box"><%= p.introduction %></div><br><br>
 							<%= link_to user_person_path(p) do %>
 								<div class="text-border"><%= p.lastname %>  <%= p.firstname %>さんの掲載商品一覧へ</div>
 							<% end %>

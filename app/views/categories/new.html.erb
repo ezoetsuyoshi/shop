@@ -1,9 +1,21 @@
-<%= form_for @category do |f| %>
-<div>カテゴリ名</div>
-<%= f.text_field :name %><br>
-<%= f.submit "登録" %>
-<% end %>
-<h3>登録カテゴリ一覧</h3><br><br>
-<% @categories.each do |cate| %>
-<%= cate.name %>　　<%= link_to "名前を変更する", edit_category_path(cate.id) %><br><br>
-<% end %>
+<section>
+	<h3>カテゴリ新規登録</h3><br><br>
+	<%= form_for @category do |f| %>
+		<div>カテゴリ名：<%= f.text_field :name %>　<%= f.submit "登録" %></div><br><br>
+	<% end %>
+	<h3>登録カテゴリ一覧・変更</h3><br><br>
+	<% @categories.each do |cate| %>
+		<%= form_for cate do |f| %>
+			<div>
+				カテゴリ名：<%= f.text_field :name %>　<%= f.submit "名前を変更する" %>
+				<% if cate.items.presence == nil %>
+					<button>
+						<%= link_to "カテゴリ削除",category_path(cate.id),method: :delete, "data-confirm"=>"本当に削除してよろしいですか？" %>
+					</button>
+				<% else %>
+					<span>商品に使われているため削除はできません</span>
+				<% end %>
+			</div><br><br>
+		<% end %>
+	<% end %>
+</section>

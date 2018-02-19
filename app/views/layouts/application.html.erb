@@ -2,35 +2,54 @@
 <html>
   <head>
     <title>Shop</title>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('#sample').bxSlider({
+          auto: true,
+          speed: 1000,
+          pause: 9000
+        });
+    });
+    </script>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
   </head>
   <body>
     <% if admin_signed_in? %>
-  	<header class="admin-header"><!--ここから管理者のヘッダー-->
-      <div class="container">
-        <div class="row">
+    	<header class="admin-header"><!--ここから管理者のヘッダー-->
+        <div class="container">
+          <div class="row">
+            <div class="head col-lg-2 admin-text">
+              <%= link_to items_path do %>
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
+              <% end %>
+            </div>
 
-          <%= link_to items_path do %><!--ホームへのリンク-->
-            <div class="head col-lg-2 admin-text"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム</div>
-          <% end %>
+            <div class="head col-lg-2 admin-text">
+              <%= link_to introduction_path do %>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 農家さん紹介
+              <% end %>
+            </div>
 
+            <div class="head col-lg-2 admin-text">
+              <%= link_to new_question_path do %>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ
+              <% end %>
+            </div>
 
-          <%= link_to introduction_path do %>
-            <div class="head col-lg-2 admin-text"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 農家さん紹介</div>
-          <% end %>
+            <div class="head col-lg-2 admin-text">
+              <%= link_to destroy_admin_session_path, method: :delete do %>
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> ログアウト
+              <% end %>
+            </div>
 
-          <%= link_to new_question_path do %>
-            <div class="head col-lg-2 admin-text"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ</div>
-          <% end %>
-
-          <%= link_to destroy_admin_session_path, method: :delete do %>
-            <div class="head col-lg-2 admin-text">ログアウト</div>
-          <% end %>
-
-          <div class="dropdown head2 col-lg-2 col-lg-offset-1"><!--管理者メニューボタン-->
-              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">管理者メニュー <span class="caret"></span></button>
+            <div class="dropdown head2 col-lg-2 col-lg-offset-1"><!--管理者メニューボタン-->
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                管理者メニュー <span class="caret"></span>
+              </button>
               <ul class="dropdown-menu">
                 <%= link_to new_person_path do %>
                   <li>生産者情報登録</li>
@@ -51,66 +70,86 @@
                   <li>カテゴリ登録</li>
                 <% end %>
               </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </header><!-- 管理者のヘッダー終わり -->
+      </header><!-- 管理者のヘッダー終わり -->
     <% else %>
-    <header><!--ここからユーザーのヘッダー-->
-      <div class="container">
-        <div class="row">
+      <header><!--ここからユーザーのヘッダー-->
+        <div class="container">
+          <div class="row">
+            <div class="head col-lg-2">
+              <%= link_to items_path do %>
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
+              <% end %>
+            </div>
 
-          <%= link_to items_path do %><!--ホームへのリンク-->
-            <div class="head col-lg-2"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム</div>
-          <% end %>
+            <div class="head col-lg-2">
+              <%= link_to introduction_path do %>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 農家さん紹介
+              <% end %>
+            </div>
 
+            <div class="head col-lg-2">
+              <%= link_to new_question_path do %>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ
+              <% end %>
+            </div>
+            <% if user_signed_in? %><!--ユーザーログイン画面へのリンク。ログイン後はユーザーログアウトボタン表示-->
 
-          <%= link_to introduction_path do %>
-            <div class="head col-lg-2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 農家さん紹介</div>
-          <% end %>
-
-          <%= link_to new_question_path do %>
-            <div class="head col-lg-2"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ</div>
-          <% end %>
-
-                <% if user_signed_in? %><!--ユーザーログイン画面へのリンク。ログイン後はユーザーログアウトボタン表示-->
-                    <%= link_to carts_path do %>
-                      <div class="head col-lg-2">カート</div>
-                    <% end %>
-                    <%= link_to destroy_user_session_path, method: :delete do %>
-                      <div class="head col-lg-2">ログアウト</div>
-                    <% end %>
-                    <%= link_to mypage_path do %>
-                      <div class="head col-lg-2 head-text">ようこそ、<%= current_user.lastname %>様<br>マイページへ</div>
-                    <% end %>
-                <% else %>
-                    <%= link_to new_user_session_path do %>
-                      <div class="head col-lg-2">ログイン</div>
-                    <% end %>
-                    <%= link_to new_user_registration_path do %>
-                      <div class="head col-lg-2">新規会員登録</div>
-                    <% end %>
-                    <div class="head col-lg-2 head-text">ようこそ、ゲスト様</div>
+              <div class="head col-lg-2">
+                <%= link_to carts_path do %>
+                  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> カート
                 <% end %>
+              </div>
+
+              <div class="head col-lg-2">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> ログアウト
+                <% end %>
+              </div>
+
+              <div class="head col-lg-2 head-text" >
+                <%= link_to mypage_path do %>
+                  <div>ようこそ、<%= current_user.lastname %>様</div>
+                <% end %>
+              </div>
+
+            <% else %>
+
+              <div class="head col-lg-2">
+                <%= link_to new_user_session_path do %>
+                  <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> ログイン
+                <% end %>
+              </div>
+
+              <div class="head col-lg-2">
+                <%= link_to new_user_registration_path do %>
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 新規会員登録
+                <% end %>
+              </div>
+
+              <div class="head col-lg-2 head-text2">ようこそ、ゲスト様</div>
+
+            <% end %>
+          </div>
         </div>
-      </div>
-    </header><!-- ユーザーのヘッダー終わり -->
+      </header><!-- ユーザーのヘッダー終わり -->
     <% end %>
-    <%= yield %>
+    <div class="content">
+      <%= yield %>
+    </div>
     <% if admin_signed_in? %>
-    <footer class="admin-footer">
-      <p>©️株式会社</p>
-      <%= link_to new_admin_session_path do %>
-        <div>管理者ページ</div>
-      <% end %>
-    </footer>
+      <footer class="admin-footer">
+        <p>©️株式会社</p>
+      </footer>
     <% else %>
-    <footer>
-      <p>©️株式会社</p>
-      <%= link_to new_admin_session_path do %>
-        <div>管理者ページ</div>
-      <% end %>
-    </footer>
+      <footer>
+        <p>©️株式会社</p>
+        <%= link_to new_admin_session_path do %>
+          <div>管理者ページ</div>
+        <% end %>
+      </footer>
     <% end %>
   </body>
 </html>

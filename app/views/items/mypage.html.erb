@@ -1,56 +1,75 @@
 <section>
-	<h3>＜お客様情報＞<button><%= link_to "編集する", edit_user_registration_path %></button></h3>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>名前</th>
-				<th>カタカナ</th>
-				<th>住所</th>
-				<th>メールアドレス</th>
-				<th>電話番号</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><%= @user.lastname %>　<%= @user.firstname %></td>
-				<td><%= @user.kana_lastname %>　<%= @user.kana_firstname %></td>
-				<td>〒<%= @user.postal_code %>　<%= @user.address %>　<%= @user.address2 %></td>
-				<td><%= @user.email %></td>
-				<td><%= @user.phone %></td>
-			</tr>
-		</tbody>
-	</table>
-	<h3>＜購入履歴＞</h3>
-	<% if @records.presence == nil %>
+	<h3>＜お客様情報＞<button><%= link_to "編集する", edit_user_registration_path %></button></h3><br><br>
+	<div class="delivery-box2">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>名前</th>
+					<th>カタカナ</th>
+					<th>住所</th>
+					<th>メールアドレス</th>
+					<th>電話番号</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= @user.lastname %>　<%= @user.firstname %></td>
+					<td><%= @user.kana_lastname %>　<%= @user.kana_firstname %></td>
+					<td>〒<%= @user.postal_code %>　<%= @user.address %>　<%= @user.address2 %></td>
+					<td><%= @user.email %></td>
+					<td><%= @user.phone %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div><br><br>
+	<h3>＜購入履歴＞</h3><br><br>
+	<% if @deliveries.presence == nil %>
 		<p>購入履歴はありません</p>
 	<% else %>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>購入日</th>
-				<th>商品</th>
-				<th>1個あたりの金額</th>
-				<th>購入数</th>
-				<th>小計</th>
-				<th>配送先</th>
-				<th></th>
-				<th>配送状況</th>
-			</tr>
-		</thead>
-		<% @records.each do |record| %>
-				<tbody>
-					<tr>
-						<td><%= record.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-						<td><%= record.item.name %></td>
-						<td><%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></td>
-						<td><%= record.count %></td>
-						<td><%= number_to_currency(record.item.price*record.count, :unit => "￥", :precision => 0) %></td>
-						<td><%= record.delivery.lastname %>  <%= record.delivery.firstname %></td>
-						<td><%= record.delivery.address %>　<%= record.delivery.address2 %></td>
-						<td><%= record.active_i18n %></td>
-					</tr>
-				</tbody>
-		<% end %>
-	</table>
+		<div class="delivery-box2">
+			<% @deliveries.each do |delivery| %>
+				<div class="record-border">
+					<div class="delivery-font">
+						購入日：<%= delivery.created_at.strftime('%Y/%m/%d %H:%M') %>
+					</div>
+					<div class="delivery-text delivery-font">
+						配送先：<%= delivery.lastname %>  <%= delivery.firstname %>　　<%= delivery.address %>　<%= delivery.address2 %>
+					</div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>商品名</th>
+								<th>1個あたりの金額</th>
+								<th>購入数</th>
+								<th>小計</th>
+								<th>配送状況</th>
+							</tr>
+						</thead>
+						<% @records.each do |record| %>
+							<% if delivery.id == record.delivery_id %>
+								<tbody>
+									<tr>
+										<td><%= record.item.name %></td>
+										<td><%= number_to_currency(record.price, :unit => "￥", :precision => 0) %></td>
+										<td><%= record.count %></td>
+										<td><%= number_to_currency(record.item.price*record.count, :unit => "￥", :precision => 0) %></td>
+										<td><%= record.active_i18n %></td>
+									</tr>
+								</tbody>
+							<% end %>
+						<% end %>
+					</table>
+					<% if delivery.total_price <= 5000 %>
+						<div class="cart-price2">
+							合計金額（送料込み）<%= number_to_currency(delivery.total_price + @fee, :unit => "￥", :precision => 0) %>
+						</div>
+					<% else %>
+						<div class="cart-price2">
+							合計金額（送料込み）<%= number_to_currency(delivery.total_price, :unit => "￥", :precision => 0) %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
 	<% end %>
 </section>

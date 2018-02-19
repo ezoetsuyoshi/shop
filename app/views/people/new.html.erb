@@ -1,56 +1,60 @@
-<h2 class="text-center">＜生産者情報登録画面＞</h2><br><br>
+<section>
+  <h2 class="text-center">＜生産者情報登録画面＞</h2><br><br>
 
-<% if @person.errors.any? %>
-    <ul>
-      	<% @person.errors.full_messages.each do |message| %>
-        <li class="error-message"><%= message %></li>
-      	<% end %>
-    </ul>
-<% end %>
+  <% if @person.errors.any? %>
+      <ul>
+        	<% @person.errors.full_messages.each do |message| %>
+          <li class="error-message"><%= message %></li>
+        	<% end %>
+      </ul>
+  <% end %>
 
-<%= form_for(@person) do |f| %>
-	<div class="text-center border-line">
-    	<P>氏名</P>
-    	<%= f.text_field :lastname %>　<%= f.text_field :firstname %>
- 	</div>
-  <div class="text-center border-line">
-      <P>氏名（カタカナ）</P>
-      <%= f.text_field :kana_lastname %>　<%= f.text_field :kana_firstname %>
-  </div>
-	<div class="border-line">
-		<p class="text-center">写真</p>
-		<div class="margin-left"><%= f.attachment_field :image %></div>
-	</div>
-  <div class="text-center border-line">
-      <p>郵便番号</p>
-      <%= f.text_field :postal_code, placeholder: "半角数字" %>
-  </div>
-	<div class="text-center border-line">
-    	<p>住所</p>
-    	<%= f.text_field :address,size: "40" %>
- 	</div>
-  <div class="text-center border-line">
+  <%= form_for(@person) do |f| %>
+  	<div class="text-center border-line">
+    	<P>お名前</P>
+    	姓：<%= f.text_field :lastname %>　名：<%= f.text_field :firstname %>
+   	</div>
+    <div class="text-center border-line">
+      <P>お名前（カタカナ）</P>
+      セイ：<%= f.text_field :kana_lastname %>　メイ：<%= f.text_field :kana_firstname %>
+    </div>
+  	<div class="border-line">
+  		<p class="text-center">写真</p>
+  		<div class="margin-left"><%= f.attachment_field :image %></div>
+  	</div>
+    <div class="h-adr">
+      <span class="p-country-name" style="display:none;">Japan</span>
+      <div class="text-center border-line">
+        <p>郵便番号</p>
+        <%= f.text_field :postal_code,class:"form_style form_input p-postal-code",maxlength:"8",placeholder:"例）　2130001",size: 15 %>
+      </div>
+    	<div class="text-center border-line">
+      	<p>住所</p>
+      	<%= f.text_field :address,class:"form_style form_input p-region p-locality p-street-address p-extended-address",size: "40",placeholder:"例）　東京都新宿区新宿１−１−１" %>
+     	</div>
+    </div>
+    <div class="text-center border-line">
       <p>建物名・マンション名、号室</p>
       <%= f.text_field :address2,size: "40" %>
-  </div>
-  <div class="text-center border-line">
-      <p>生産地(市まで)</p>
+    </div>
+    <div class="text-center border-line">
+      <p>生産地(市・区まで)</p>
       <%= f.text_field :area %>
-  </div>
-	<div class="text-center border-line">
+    </div>
+  	<div class="text-center border-line">
     	<p>電話番号</p>
     	<%= f.text_field :phone %>
- 	</div>
-  <div class="text-center border-line">
+   	</div>
+    <div class="text-center border-line">
       <p>一言紹介</p>
-    <%= f.text_area :introduction %>
-  </div>
- 	<div class="text-center border-line">
-  		<p>紹介文</p>
-		<%= f.text_area :introduction2, size: "60x15" %>
- 	</div>
- 	<div class="text-center">
- 		<%= f.submit "登録" %>
- 	</div>
-
-<% end %>
+      <%= f.text_area :introduction,placeholder: "30文字まで" %>
+    </div>
+   	<div class="text-center border-line">
+    	<p>紹介文</p>
+  		<%= f.text_area :introduction2, size: "60x10",placeholder: "250文字まで" %>
+   	</div>
+   	<div class="text-center">
+   		<%= f.submit "登録" %>
+   	</div>
+  <% end %>
+</section>

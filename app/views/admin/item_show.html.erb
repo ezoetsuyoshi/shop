@@ -1,23 +1,27 @@
 <section class="section-show">
 	<div class="container">
 		<div class="row">
-				<div class="col-lg-6"><%= attachment_image_tag @item, :image, :fill, 500, 500 %></div><!--商品写真、画面左側-->
+			<div class="col-lg-6"><%= attachment_image_tag @item, :image, :fill, 500, 500 %></div><!--商品写真、画面左側-->
 
-				<div class="col-lg-6"><!--商品情報、画面右側-->
-					<div class="show-title"><%= @item.name %></div>
-					<div class="show-price"><%= number_to_currency(@item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span></div>
-					<div>
-						＜生産者名＞
-						<%= link_to introduction_path do %>
-						<%= @item.person.lastname %>  <%= @item.person.firstname %>
-						<% end %>
-					</div>
-					<div class="show-item-top">＜商品説明＞<br><br><%= @item.description %></div>
-					<div>残り<%= @item.stock %>個</div>
-					<div class="cart"><span class="glyphicon glyphicon-shopping-cart big" aria-hidden="true"></span>カートに入れる</div>
-						<br><%= link_to "商品情報編集", edit_item_path(@item.id) %>
-						<br><%= link_to "商品削除", item_path(@item.id), method: :delete, "data-confirm" => "商品を削除してよろしいですか?" %>
+			<div class="col-lg-6"><!--商品情報、画面右側-->
+				<div class="show-title"><%= @item.name %></div>
+				<div class="show-price">
+					<%= number_to_currency(@item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span>
 				</div>
+				<div>
+					＜生産者名＞
+					<%= link_to introduction_path do %>
+						<%= @item.person.lastname %>  <%= @item.person.firstname %>
+					<% end %>
+				</div>
+				<div class="show-item-top">＜商品説明＞<br><%= @item.description %></div>
+				<div>残り<%= @item.stock %>個</div><br>
+				<div class="square_btn3">カートに入れる</div><br><br>
+				<button><%= link_to "商品情報編集", edit_item_path(@item.id) %></button>
+				<button class="button-margin-left">
+					<%= link_to "商品削除", item_path(@item.id), method: :delete, "data-confirm" => "商品を削除してよろしいですか?" %>
+				</button>
+			</div>
 		</div>
 	</div>
 </section>

@@ -1,4 +1,5 @@
-<h2 class="text-center">＜生産者詳細画面＞</h2>
+<section>
+	<h2 class="text-center">＜生産者詳細画面＞</h2>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
@@ -10,27 +11,28 @@
 				<div><%= @person.address2 %></div><br>
 				<div><%= @person.phone %></div><br>
 				<div>生産地：<%= @person.area %></div><br>
-				<%= link_to "編集　", edit_person_path(@person.id) %>
-				<%= link_to "　削除　", person_path, method: :delete, "data-confirm" => "本当に削除してもよろしいですか？" %>
-				<%= link_to "　一覧へ戻る　", people_path %>
+				<button><%= link_to "　編集　", edit_person_path(@person.id) %></button>
+				<button><%= link_to "　削除　", person_path, method: :delete, "data-confirm" => "本当に削除してもよろしいですか？" %></button>
+				<button><%= link_to "　一覧へ戻る　", people_path %></button>
 			</div>
 			<div class="col-lg-6 person-text">
 				<%= @person.introduction2 %>
 			</div>
 		</div>
 
-<h2 class="text-center">＜<%= @person.lastname %>  <%= @person.firstname %>さんの掲載商品一覧＞</h2><br>
-	<div class="row">
-		<% @items.each do |i| %>
-			<% if i.person_id == @person.id %>
-				<div class="inline">
-					<%= link_to item_path(i.id) do %>
-						<div class="box"><%= attachment_image_tag i, :image, :fill, 150, 150 %></div>
-					<% end %>
-					<div><%= i.name %></div>
-					<div class="item-price"><%= number_to_currency(i.price, :unit => "￥", :precision => 0) %></div>
-				</div>
+		<h2 class="text-center">＜<%= @person.lastname %>  <%= @person.firstname %>さんの掲載商品一覧＞</h2><br>
+		<div class="row">
+			<% @items.each do |i| %>
+				<% if i.person_id == @person.id %>
+					<div class="inline">
+						<%= link_to admin_item_show_path(i.id) do %>
+							<div class="box"><%= attachment_image_tag i, :image, :fill, 150, 150 %></div>
+						<% end %>
+						<div><%= i.name %></div>
+						<div class="item-price"><%= number_to_currency(i.price, :unit => "￥", :precision => 0) %></div>
+					</div>
+				<% end %>
 			<% end %>
-		<% end %>
+		</div>
 	</div>
-</div>
+</section>

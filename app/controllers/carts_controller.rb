@@ -2,6 +2,7 @@ class CartsController < ApplicationController
 
 	def index
 		@carts = Cart.all
+		@categories = Category.all
 		@fee = 540
 		@total_price = 0
 		@carts.each do |cart|
