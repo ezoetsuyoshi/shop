@@ -8,6 +8,7 @@
 				<th>住所</th>
 				<th>メールアドレス</th>
 				<th>電話番号</th>
+				<th>ステータス</th>
 			</tr>
 		</thead>
 		<% @users.each do |u| %>
@@ -18,6 +19,13 @@
 					<td>〒<%= u.postal_code %>　　<%= u.address %>　<%= u.address2 %></td>
 					<td><%= u.email %></td>
 					<td><%= u.phone %></td>
+					<% if u.soft_destroyed_at == nil %>
+						<td>有効</td>
+					<% else %>
+						<td>退会済</td>
+					<% end %>
+					<td><button><%= link_to "退会させる", :controller => "admin", :action => "admin_delete_user",:id => u.id %></button></td>
+					<td><button><%= link_to "元に戻す",controller: "admin",action: "admin_up_user",id: u.id %></button></td>
 					<td><button><%= link_to "購入情報", admin_user_show_path(u.id) %></button></td>
 				</tr>
 			</tbody>

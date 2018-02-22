@@ -1,7 +1,9 @@
 <section>
   <h2 class="text-center">ログイン</h2>
   <div class="login-box">
-
+    <% flash.each do |name, msg| %>
+    <div class="text-center text-color"><%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %></div>
+    <% end %>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 

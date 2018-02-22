@@ -43,12 +43,12 @@
     	<%= f.text_field :phone %>
    	</div>
     <div class="text-center border-line">
-      <p>一言紹介</p>
-      <%= f.text_area :introduction,placeholder: "30文字まで" %>
+      <p>一言紹介</p><p id="textlength1">入力時ここに文字数が表示されます</p>
+      <%= f.text_area :introduction,placeholder: "30文字まで",onFocus: "countLength(value, 'textlength1');",onKeyUp: "countLength(value, 'textlength1');" %>
     </div>
    	<div class="text-center border-line">
-    	<p>紹介文</p>
-  		<%= f.text_area :introduction2, size: "60x15" %>
+    	<p>紹介文</p><p id="textlength2">入力時ここに文字数が表示されます</p>
+  		<%= f.text_area :introduction2, size: "60x10",onFocus: "countLength(value, 'textlength2');",onKeyUp: "countLength(value, 'textlength2');" %>
    	</div>
    	<div class="text-center">
    		<%= f.submit "変更を保存する" %>

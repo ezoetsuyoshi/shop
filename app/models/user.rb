@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+         soft_deletable
+         def self.find_for_authentication(warden_conditions)#論理削除済みのユーザーをログインさせない記述
+             without_soft_destroyed.where(email: warden_conditions[:email]).first
+         end
+
          has_many :carts
          has_many :records
          has_many :deliveries

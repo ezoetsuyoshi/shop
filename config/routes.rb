@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   get "/introduction" => "people#introduction" #ユーザー側の生産者紹介ページ用
   get "/mypage" => "items#mypage"
+  get "/soft_delete" => "items#soft_delete"
+  get "/admin_delete_user/:id" => "admin#admin_delete_user"
+  get "/admin_up_user/:id" => "admin#admin_up_user"
   root 'items#mypage'
   get "/mypage_index" => "admin#mypage_index" #管理者側のユーザー一覧画面表示用
   get "/item_show/:id" => "admin#item_show", as: "admin_item_show"
