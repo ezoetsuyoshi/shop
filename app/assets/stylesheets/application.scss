@@ -43,13 +43,6 @@ box-sizing: border-box;
 	text-align: center;
 	color: red;
 }
-.image-photo{
-	background: url("my-icon.jpg");
-	height: 300px;
-	width: 300px;
-	background-position: center;
-	background-size: cover;
-}
 header{
 	background-color: #d88a0070;
 	height: 50px;
@@ -80,21 +73,21 @@ a:link, a:visited{
 	padding-top: 6px;
 }
 .mainimage{
-	background: url(sample7.jpg);
-	background-position: center;
-	background-size: 1259px 500px;
+	background: url(slide_show1.jpeg);
+	background-position: bottom;
+	background-size: cover;/*1259px 500px*/
 	height: 500px;
 }
 .mainimage2{
-	background: url(sample2.jpg);
+	background: url(slide_show2.jpg);
 	background-position: center;
-	background-size: 1259px 500px;
+	background-size: cover;
 	height: 500px;
 }
 .mainimage3{
-	background: url(sample1.jpg);
+	background: url(slide_show3.jpeg);
 	background-position: center;
-	background-size: 1259px 500px;
+	background-size: cover;
 	height: 500px;
 }
 .top-box{

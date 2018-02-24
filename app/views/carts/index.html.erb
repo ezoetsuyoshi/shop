@@ -48,26 +48,26 @@
 					<div class="col-lg-3 cart-top-margin cart-price">小計　<%= number_to_currency(cart.item.price*cart.count, :unit => "￥", :precision => 0) %>　(税込)
 					</div>
 				</div>
+
+				<% if @total_price >= 5000 %>
+					<div class="cart-price cart-left-margin">送料無料</div>
+					<div class="cart-price cart-left-margin">
+						合計金額　<%= number_to_currency(@total_price, :unit => "￥", :precision => 0) %>　(税込)
+					</div>
+				<% else %>
+					<div class="cart-price cart-left-margin">送料 <%= number_to_currency(@fee, :unit => "￥", :precision => 0) %></div>
+					<div class="cart-price cart-left-margin">
+						合計金額　<%= number_to_currency(@total_price+@fee, :unit => "￥", :precision => 0) %>　(税込)
+					</div>
+				<% end %>
+
+				<%= link_to new_delivery_path do %>
+					<div class="square_btn">購入手続きへ</div>
+				<% end %>
+				<%= link_to items_path do %>
+					<div class="square_btn2">買い物を続ける</div>
+				<% end %>
 			<% end %>
-		<% end %>
-
-		<% if @total_price >= 5000 %>
-			<div class="cart-price cart-left-margin">送料無料</div>
-			<div class="cart-price cart-left-margin">
-				合計金額　<%= number_to_currency(@total_price, :unit => "￥", :precision => 0) %>　(税込)
-			</div>
-		<% else %>
-			<div class="cart-price cart-left-margin">送料 <%= number_to_currency(@fee, :unit => "￥", :precision => 0) %></div>
-			<div class="cart-price cart-left-margin">
-				合計金額　<%= number_to_currency(@total_price+@fee, :unit => "￥", :precision => 0) %>　(税込)
-			</div>
-		<% end %>
-
-		<%= link_to new_delivery_path do %>
-			<div class="square_btn">購入手続きへ</div>
-		<% end %>
-		<%= link_to items_path do %>
-			<div class="square_btn2">買い物を続ける</div>
 		<% end %>
 	</div>
 </section>

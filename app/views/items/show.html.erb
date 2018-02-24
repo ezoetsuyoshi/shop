@@ -9,7 +9,7 @@
 				</div>
 				<div>
 					＜生産者名＞
-					<%= link_to introduction_path do %>
+					<%= link_to user_person_path(@item.person.id) do %>
 						<span class="cart-page2"><%= @item.person.lastname %>  <%= @item.person.firstname %></span>
 					<% end %>
 				</div>
