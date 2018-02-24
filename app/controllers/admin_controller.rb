@@ -12,6 +12,18 @@ class AdminController < ApplicationController
 		@fee = 540
 	end
 
+	def admin_delete_user
+		@user = User.find(params[:id])
+		@user.soft_destroy
+		redirect_to mypage_index_path
+	end
+
+	def admin_up_user
+		@user = User.find(params[:id])
+		@user.restore
+		redirect_to mypage_index_path
+	end
+
 	def mypage_index
 		@users = User.all
 	end

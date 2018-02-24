@@ -34,9 +34,9 @@
 				<%= f.text_field :phone, :size=>"40",placeholder:"例）　090-0000-0000" %>
 			</div><br>
 
-			<div class="text-center">お問い合わせ内容</div>
+			<div class="text-center">お問い合わせ内容(１０００文字まで)<p id="textlength1">入力時、文字数が表示されます</p></div>
 			<div class="text-center">
-				<%= f.text_area :content, :size=>"60x15",placeholder:"1000文字以内" %>
+				<%= f.text_area :content, :size=>"60x15",onFocus: "countLength(value, 'textlength1');",onKeyUp: "countLength(value, 'textlength1');" %>
 			</div><br>
 			<div class="text-center">
 				<%= f.submit "送信する" %>

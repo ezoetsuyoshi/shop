@@ -55,6 +55,12 @@ class ItemsController < ApplicationController
 		@fee = 540
 	end
 
+	def soft_delete
+		@user = User.find(current_user.id)
+		@user.soft_destroy
+		redirect_to destroy_user_session_path#デバイスのセッションデリートはゲットでできるように変更しました
+	end
+
 
 	private
 

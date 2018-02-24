@@ -62,3 +62,4 @@ gem 'kaminari'
 gem 'hirb'#Hirb.enable　コンソールにこれを打ち込んでからデータを引っ張ると表になって表示される
 gem 'hirb-unicode'
 gem 'enum_help'
+gem 'kakurenbo-puti'

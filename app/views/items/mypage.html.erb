@@ -1,5 +1,5 @@
 <section>
-	<h3>＜お客様情報＞<button><%= link_to "編集する", edit_user_registration_path %></button></h3><br><br>
+	<h3>＜お客様情報＞<button><%= link_to "編集する", edit_user_registration_path %></button>　<button><%= link_to "退会する",soft_delete_path,"data-confirm" => "一度退会すると同じメールアドレスで登録することはできません。よろしいですか？" %></button></h3><br><br>
 	<div class="delivery-box2">
 		<table class="table table-striped">
 			<thead>

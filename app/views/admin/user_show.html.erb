@@ -1,5 +1,5 @@
 <section>
-	<h3>＜購入情報＞</h3><%= link_to "一覧へ戻る", mypage_index_path, class: "mypege-show-link" %><br><br>
+	<h3>＜<%= @user.lastname %> <%= @user.firstname %>様　の購入情報＞</h3><br><br><%= link_to "一覧へ戻る", mypage_index_path, class: "mypege-show-link" %><br><br>
 	<% if @records.presence == nil %>
 		<p>購入履歴はありません</p>
 	<% else %>

@@ -22,3 +22,15 @@ $(document).ready(function() {
     }
   });
 });
+
+function countLength( text, field ) {
+  document.getElementById(field).innerHTML = "現在"+text.length+"文字";
+  }
+
+$(function() {
+    $('#sample').bxSlider({
+      auto: true,
+      speed: 1000,
+      pause: 9000
+    });
+});
