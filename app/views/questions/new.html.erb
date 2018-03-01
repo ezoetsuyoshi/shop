@@ -2,26 +2,28 @@
 	<div class="flash-message"><%= flash[:n] %></div>
 <% end %>
 
+<% if @question.errors.any? %>
+	<ul>
+  		<% @question.errors.full_messages.each do |message| %><br>
+    		<li class="error-message"><%= message %></li>
+  		<% end %>
+	</ul>
+<% end %>
+
 <section>
 	<h2 class="text-center">お問い合わせ</h2><br><br>
 	<div class="login-box">
-		<% if @question.errors.any? %>
-	    	<ul>
-	      		<% @question.errors.full_messages.each do |message| %>
-	        		<li class="error-message"><%= message %></li>
-	      		<% end %>
-	    	</ul>
-		<% end %>
-
 		<%= form_for(@question) do |f| %>
 			<div class="text-center">お名前</div>
 			<div class="text-center">
-				姓：<%= f.text_field :lastname, :size=>"20",placeholder:"例）　山田" %>　名：<%= f.text_field :firstname, :size=>"20",placeholder:"例）　太郎" %>
+				<div>姓：<%= f.text_field :lastname, :size=>"20",placeholder:"例）　山田" %></div><br>
+				<div>名：<%= f.text_field :firstname, :size=>"20",placeholder:"例）　太郎" %></div>
 			</div><br>
 
 			<div class="text-center">お名前（カナ）</div>
 			<div class="text-center">
-				セイ<%= f.text_field :kana_lastname, :size=>"20",placeholder:"例）　ヤマダ" %>　メイ<%= f.text_field :kana_firstname, :size=>"20",placeholder:"例）　タロウ" %>
+				<div>セイ<%= f.text_field :kana_lastname, :size=>"20",placeholder:"例）　ヤマダ" %></div><br>
+				<div>メイ<%= f.text_field :kana_firstname, :size=>"20",placeholder:"例）　タロウ" %></div>
 			</div><br>
 
 			<div class="text-center">メールアドレス</div>

@@ -10,10 +10,10 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="search-box">
-					<p class="items-top">〜１３時までにご注文で本日お届け！！ 送料一律５４０円！５０００円以上購入で送料無料！！〜</p>
+					<p class="items-top">〜１３時までにご注文で本日お届け！！〜<br>〜送料一律５４０円！５０００円以上購入で送料無料！！〜</p>
 					<div>
 						<%= form_tag(items_path, method: :get) do %><!--検索機能-->
-		  					ひらがなで検索：<%= text_field_tag :search, "", :placeholder => "例）とまと",size: 30 %>
+		  					ひらがな検索：<%= text_field_tag :search, "", :placeholder => "例）とまと",size: 20 %>
 		  					<%= submit_tag "検索", :yomi_name => nil %>
 						<% end %>
 					</div>
@@ -44,11 +44,9 @@
 			<div class="col-lg-2 col-lg-offset-1">
 				<p class="category">カテゴリ別</p>
 				<% @categories.each do |c| %>
-					<%= link_to category_path(c.id) do %>
-						<ul>
-							<li class="cart-page"><%= c.name %></li><br>
-						</ul>
-					<% end %>
+					<ul>
+						<li class="cart-page"><%= link_to category_path(c.id) do %><%= c.name %><% end %></li><br>
+					</ul>
 				<% end %>
 			</div>
 		</div>

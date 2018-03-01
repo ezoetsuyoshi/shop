@@ -6,12 +6,14 @@
     <div class="login-box">
       <div class="text-center border-line">
         <P>お名前</P>
-        姓：<%= f.text_field :lastname, autofocus: true,placeholder:"例）　山田" %>　名：<%= f.text_field :firstname, autofocus: true,placeholder:"例）　太郎" %>
+        <div>姓：<%= f.text_field :lastname, autofocus: true,placeholder:"例）　山田" %></div><br>
+        <div>名：<%= f.text_field :firstname, autofocus: true,placeholder:"例）　太郎" %></div>
       </div>
 
       <div class="text-center border-line">
         <P>お名前（カナ）</P>
-        セイ：<%= f.text_field :kana_lastname, autofocus: true,placeholder:"例）　ヤマダ" %>　メイ：<%= f.text_field :kana_firstname, autofocus: true,placeholder:"例）　タロウ" %>
+        <div>セイ：<%= f.text_field :kana_lastname, autofocus: true,placeholder:"例）　ヤマダ" %></div><br>
+        <div>メイ：<%= f.text_field :kana_firstname, autofocus: true,placeholder:"例）　タロウ" %></div>
       </div>
       <div class="h-adr">
         <span class="p-country-name" style="display:none;">Japan</span>
