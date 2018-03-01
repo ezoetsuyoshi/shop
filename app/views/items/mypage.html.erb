@@ -1,7 +1,7 @@
-<section>
-	<h3>＜お客様情報＞<button><%= link_to "編集する", edit_user_registration_path %></button>　<button><%= link_to "退会する",soft_delete_path,"data-confirm" => "一度退会すると同じメールアドレスで登録することはできません。よろしいですか？" %></button></h3><br><br>
-	<div class="delivery-box2">
-		<table class="table table-striped">
+<section class="mypage-media">
+	<h4>＜お客様情報＞<button><%= link_to "編集する", edit_user_registration_path %></button>　<button><%= link_to "退会する",soft_delete_path,"data-confirm" => "一度退会すると同じメールアドレスで登録することはできません。よろしいですか？" %></button></h4><br><br>
+	<div class="delivery-box2 table-responsive">
+		<table class="table table-striped ">
 			<thead>
 				<tr>
 					<th>名前</th>
@@ -22,13 +22,13 @@
 			</tbody>
 		</table>
 	</div><br><br>
-	<h3>＜購入履歴＞</h3><br><br>
+	<h4>＜購入履歴＞</h4><br><br>
 	<% if @deliveries.presence == nil %>
 		<p>購入履歴はありません</p>
 	<% else %>
 		<div class="delivery-box2">
 			<% @deliveries.each do |delivery| %>
-				<div class="record-border">
+				<div class="record-border table-responsive">
 					<div class="delivery-font">
 						購入日：<%= delivery.created_at.strftime('%Y/%m/%d %H:%M') %>
 					</div>

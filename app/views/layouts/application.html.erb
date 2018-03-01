@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Shop</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,7 +16,7 @@
           <div class="row">
             <div class="head col-lg-2 admin-text">
               <%= link_to items_path do %>
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> ホーム
               <% end %>
             </div>
 
@@ -68,61 +69,65 @@
     <% else %>
       <header><!--ここからユーザーのヘッダー-->
         <div class="container">
-          <div class="row">
-            <div class="head col-lg-2">
+          <div id="nav-drawer" class="row">
+            <input id="nav-input" type="checkbox" class="nav-unshown">
+            <label id="nav-open" for="nav-input"><span></span></label>
+            <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+            <div class="head col-lg-3 logo col-xs-11">
               <%= link_to items_path do %>
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> 野菜販売サイト<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
               <% end %>
             </div>
+            <div id="nav-content" class="col-lg-9">
+              <div class="head col-lg-2">
+                <%= link_to introduction_path do %>
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 農家さん紹介
+                <% end %>
+              </div>
 
-            <div class="head col-lg-2">
-              <%= link_to introduction_path do %>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 農家さん紹介
+              <div class="head col-lg-2">
+                <%= link_to new_question_path do %>
+                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ
+                <% end %>
+              </div>
+              <% if user_signed_in? %><!--ユーザーログイン画面へのリンク。ログイン後はユーザーログアウトボタン表示-->
+
+                <div class="head col-lg-2">
+                  <%= link_to carts_path do %>
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> カート
+                  <% end %>
+                </div>
+
+                <div class="head col-lg-2">
+                  <%= link_to destroy_user_session_path do %>
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> ログアウト
+                  <% end %>
+                </div>
+
+                <div class="head col-lg-3 head-text" >
+                  <%= link_to mypage_path do %>
+                    <div>ようこそ　<%= current_user.lastname %>様</div>
+                  <% end %>
+                </div>
+
+              <% else %>
+
+                <div class="head col-lg-2">
+                  <%= link_to new_user_session_path do %>
+                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> ログイン
+                  <% end %>
+                </div>
+
+                <div class="head col-lg-2">
+                  <%= link_to new_user_registration_path do %>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 新規会員登録
+                  <% end %>
+                </div>
+
+                <div class="head col-lg-3 head-text2">ようこそ　ゲスト様</div>
+
               <% end %>
             </div>
-
-            <div class="head col-lg-2">
-              <%= link_to new_question_path do %>
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 問い合わせ
-              <% end %>
-            </div>
-            <% if user_signed_in? %><!--ユーザーログイン画面へのリンク。ログイン後はユーザーログアウトボタン表示-->
-
-              <div class="head col-lg-2">
-                <%= link_to carts_path do %>
-                  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> カート
-                <% end %>
-              </div>
-
-              <div class="head col-lg-2">
-                <%= link_to destroy_user_session_path do %>
-                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> ログアウト
-                <% end %>
-              </div>
-
-              <div class="head col-lg-2 head-text" >
-                <%= link_to mypage_path do %>
-                  <div>ようこそ　<%= current_user.lastname %>様</div>
-                <% end %>
-              </div>
-
-            <% else %>
-
-              <div class="head col-lg-2">
-                <%= link_to new_user_session_path do %>
-                  <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> ログイン
-                <% end %>
-              </div>
-
-              <div class="head col-lg-2">
-                <%= link_to new_user_registration_path do %>
-                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 新規会員登録
-                <% end %>
-              </div>
-
-              <div class="head col-lg-2 head-text2">ようこそ　ゲスト様</div>
-
-            <% end %>
           </div>
         </div>
       </header><!-- ユーザーのヘッダー終わり -->

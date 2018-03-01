@@ -8,12 +8,14 @@
 		<%= form_for @delivery do |f| %>
 			<div class="text-center">お名前</div>
 			<div class="text-center">
-				姓：<%= f.text_field :lastname,value: "#{current_user.lastname}", :size=>"20",placeholder:"例）　山田" %>　名：<%= f.text_field :firstname,value: "#{current_user.firstname}", :size=>"20",placeholder:"例）　太郎" %>
+				<div>姓：<%= f.text_field :lastname,value: "#{current_user.lastname}", :size=>"20",placeholder:"例）　山田" %></div><br>
+				<div>名：<%= f.text_field :firstname,value: "#{current_user.firstname}", :size=>"20",placeholder:"例）　太郎" %></div>
 			</div><br>
 
 			<div class="text-center">お名前（カナ）</div>
 			<div class="text-center">
-				セイ：<%= f.text_field :kana_lastname,value: "#{current_user.kana_lastname}", :size=>"20",placeholder:"例）　ヤマダ" %>　メイ：<%= f.text_field :kana_firstname,value: "#{current_user.kana_firstname}", :size=>"20",placeholder:"例）　タロウ" %>
+				<div>セイ：<%= f.text_field :kana_lastname,value: "#{current_user.kana_lastname}", :size=>"20",placeholder:"例）　ヤマダ" %></div><br>
+				<div>メイ：<%= f.text_field :kana_firstname,value: "#{current_user.kana_firstname}", :size=>"20",placeholder:"例）　タロウ" %></div>
 			</div><br>
 			<div class="h-adr">
 		  		<span class="p-country-name" style="display:none;">Japan</span>

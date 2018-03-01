@@ -35,11 +35,9 @@
 			<div class="col-lg-2 col-lg-offset-1">
 				<p class="category">カテゴリ別</p>
 				<% @categories.each do |c| %>
-					<%= link_to category_path(c.id) do %>
-						<ul>
-							<li class="cart-page"><%= c.name %></li><br>
-						</ul>
-					<% end %>
+					<ul>
+						<li class="cart-page"><%= link_to category_path(c.id) do %><%= c.name %><% end %></li><br>
+					</ul>
 				<% end %>
 			</div>
 		</div>

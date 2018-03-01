@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
 
 	def show
 		@items = if params[:search]
-			Item.all.where("name LIKE?","%#{params[:search]}%")
+			Item.all.where("yomi_name LIKE?","%#{params[:search]}%")
 			else
 			Item.all
 		end
