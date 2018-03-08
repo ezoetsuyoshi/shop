@@ -8,17 +8,20 @@
 		<% @carts.each do |cart| %>
 			<% if current_user.id == cart.user_id %>
 				<div class="row cart-border">
-					<div class="col-lg-3 cart-show-media">
-						<%= attachment_image_tag cart.item, :image, :fill, 200, 200 %><br><br>
+					<div class="col-lg-3">
+						<div class="cart-item-box"><%= attachment_image_tag cart.item, :image, :fill, 200, 200 %></div><br><br>
 						<span><%= link_to "カートから削除",cart_path(cart),method: :delete %></span>
 					</div><br><br>
 					<div class="col-lg-3">
 						<div class="cart-title"><%= cart.item.name %></div><br>
 						<div class="cart-price"><%= number_to_currency(cart.item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span></div><br>
 						<div>
-							＜生産者名＞
+							＜生産者＞
+							<div class="person-box2">
+								<%= attachment_image_tag cart.item.person, :image, :fill, 100, 100 %>
+							</div>
 							<%= link_to user_person_path(cart.item.person.id) do %>
-								<%= cart.item.person.lastname %>  <%= cart.item.person.firstname %>
+								<span class="cart-page2"><%= cart.item.person.lastname %>  <%= cart.item.person.firstname %></span>
 							<% end %>
 						</div><br>
 						<div>残り<%= cart.item.stock %>個</div><br>
@@ -28,7 +31,9 @@
 							</div>
 						<% end %>
 					</div>
-					<div class="col-lg-3 cart-top-margin cart-price">小計　<%= number_to_currency(cart.item.price*cart.count, :unit => "￥", :precision => 0) %>　(税込)
+					<div class="col-lg-3">
+						<div class="cart-description"><%= cart.item.description %></div>
+						<div class="cart-price">小計　<%= number_to_currency(cart.item.price*cart.count, :unit => "￥", :precision => 0) %>　(税込)</div>
 					</div>
 				</div>
 			<% end %>
