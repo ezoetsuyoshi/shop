@@ -1,16 +1,24 @@
 <section class="section-show">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6 item-show-media"><%= attachment_image_tag @item, :image, :fill, 500, 500 %></div><!--商品写真、画面左側-->
+			<div class="col-lg-6">
+				<div class="item-box"><%= attachment_image_tag @item, :image, :fill, 500, 500 %></div>
+			</div><!--商品写真、画面左側-->
 			<div class="col-lg-6"><!--商品情報、画面右側-->
 				<div class="show-title"><%= @item.name %></div>
 				<div class="show-price">
 					<%= number_to_currency(@item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span>
 				</div>
 				<div>
-					＜生産者名＞
+					＜生産者＞
+					<div class="person-box2"><%= attachment_image_tag @item.person, :image, :fill, 100, 100 %></div>
 					<%= link_to user_person_path(@item.person.id) do %>
 						<span class="cart-page2"><%= @item.person.lastname %>  <%= @item.person.firstname %></span>
+					<% end %>
+				</div><br>
+				<div>＜商品カテゴリ＞<br>
+					<%= link_to category_path(@item.category.id) do %>
+						<div class="cart-page2"><%= @item.category.name %></div>
 					<% end %>
 				</div>
 				<div class="show-item-top">＜商品説明＞<br><%= @item.description %></div>
@@ -19,13 +27,13 @@
 				<% else %>
 					<div>残り<%= @item.stock %>個</div>
 					<%= form_for @cart do |f| %>
-						<%= f.select :count, 1..@item.stock %>個<br>
-						<%= f.hidden_field :item_id, value: @item.id %><br>
+						<%= f.select :count, 1..@item.stock %>個
+						<%= f.hidden_field :item_id, value: @item.id %>
 						<% if user_signed_in? %>
-							<div><%= f.submit "カートに入れる", class: "square_btn3" %></div>
+							<%= f.submit "カートに入れる", class: "square_btn4" %>
 						<% else %>
 							<%= link_to new_user_session_path do %>
-								<div class="square_btn3">カートに入れる</div>
+								<div class="square_btn4">カートに入れる</div>
 							<% end %>
 						<% end %>
 					<% end %>
