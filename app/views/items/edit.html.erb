@@ -39,7 +39,7 @@
 			<%= f.text_field :price %>円
 		</div>
 		<div class="text-center border-line">
-			<p>商品説明(２００文字まで)</p><p id="textlength1">入力時ここに文字数が表示されます</p>
+			<p>商品説明(１４０文字まで)</p><p id="textlength1">入力時ここに文字数が表示されます</p>
 			<%= f.text_area :description, size: "60x8",onFocus: "countLength(value, 'textlength1');",onKeyUp: "countLength(value, 'textlength1');" %>
 		</div>
 		<div class="text-center">

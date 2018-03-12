@@ -15,7 +15,7 @@
 		<div class="row">
 			<% @items.each do |i| %>
 				<% if i.person_id == @person.id %>
-					<div class="inline">
+					<div class="inline3">
 						<%= link_to item_path(i.id) do %>
 							<div class="box"><%= attachment_image_tag i, :image, :fill, 150, 150 %></div>
 						<% end %>
