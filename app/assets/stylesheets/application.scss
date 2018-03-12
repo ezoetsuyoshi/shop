@@ -407,7 +407,7 @@ footer{
 }
 .cart-page2{
 	text-decoration: underline;
-	margin-left: 15px;
+	margin-left: 20px;
 }
 .cart-change{
 	font-size: 14px;
@@ -451,10 +451,13 @@ footer{
 		font-size: 10px;
 	}
 	.inline{
-		margin-left: 30%;
+		margin-left: 23%;
 	}
 	.cart-page{
 		margin-left: 45%;
+	}
+	.cart-page2{
+		margin-left: 0px;
 	}
 	.item-box{
 		height: auto;
@@ -609,5 +612,8 @@ footer{
 	.item-show-media{
 		width: 70%;
 		margin: 0 auto;
+	}
+	.item-media2{
+		text-align: center;
 	}
 }

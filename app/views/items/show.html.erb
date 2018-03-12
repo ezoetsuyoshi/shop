@@ -9,19 +9,19 @@
 				<div class="show-price">
 					<%= number_to_currency(@item.price, :unit => "￥", :precision => 0) %><span class="show-size">（税込）</span>
 				</div>
-				<div>
+				<div class="item-media2">
 					＜生産者＞
 					<div class="person-box2"><%= attachment_image_tag @item.person, :image, :fill, 100, 100 %></div>
 					<%= link_to user_person_path(@item.person.id) do %>
 						<span class="cart-page2"><%= @item.person.lastname %>  <%= @item.person.firstname %></span>
 					<% end %>
 				</div><br>
-				<div>＜商品カテゴリ＞<br>
+				<div class="item-media2">＜商品カテゴリ＞<br>
 					<%= link_to category_path(@item.category.id) do %>
-						<div class="cart-page2"><%= @item.category.name %></div>
+						<div class="cart-page2 item-media2"><%= @item.category.name %></div>
 					<% end %>
 				</div>
-				<div class="show-item-top">＜商品説明＞<br><%= @item.description %></div>
+				<div class="show-item-top item-media2">＜商品説明＞<br><%= @item.description %></div>
 				<% if @item.stock == 0 %>
 					<div class="bold text-color">申し訳ございません。ただいま品切れになっております。</div>
 				<% else %>
