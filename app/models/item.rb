@@ -9,7 +9,7 @@ class Item < ApplicationRecord
 	validates :name, presence: true
 	validates :price, presence: true
 	validates :image, presence: true
-	validates :description, presence: true,length:{maximum:200}
+	validates :description, presence: true,length:{maximum:140}
 	validates :person_id,presence: true
 	validates :category_id,presence: true
 	validates :stock,:yomi_name, presence: true
